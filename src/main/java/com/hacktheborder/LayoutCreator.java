@@ -1,6 +1,7 @@
 package com.hacktheborder;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -16,40 +17,53 @@ public class LayoutCreator {
     }
 
 
-    public static JTextField getQuestion() {
-        return new JTextField() {{
-            setText("What type of error is this?");
+    public static JTextArea getQuestion(String s) {
+        return new JTextArea(s) {{
+            setFont(new Font("Monaco", Font.PLAIN, 15));
             setEditable(false);
-            setOpaque(true);
-            setPreferredSize(new Dimension(500, 50));
+            //setBorder(new RoundedBorder(75));
+            setPreferredSize(new Dimension(800, 100));
             setMaximumSize(getPreferredSize());
-            //setBackground(new Color(19, 22, 25));
-            setForeground(Color.BLACK);
-            setHorizontalAlignment(JTextField.CENTER);
+            setMinimumSize(getPreferredSize());
+            setBackground(new Color(19, 22, 25));
+            setForeground(Color.WHITE);
+            //setHorizontalAlignment(JTextArea.CENTER);
         }};
     }
 
 
-    public static JTextArea getTextArea(String text, boolean editable) {
-        return new JTextArea(){{
-            setText(text);
+    public static JTextArea getTextArea(String s) {
+        return new JTextArea(s){{
             setFont(new Font("Courier New", Font.PLAIN, 12));
-            setEditable(editable);
+            setEditable(false);
             setForeground(Color.WHITE);
             setBackground(new Color(30, 59, 82));
             setCaretColor(Color.WHITE);
-            setPreferredSize(new Dimension(500, 100));
+            setPreferredSize(new Dimension(800, 100));
             setMaximumSize(getPreferredSize());
+            setMinimumSize(getPreferredSize());
         }};
     }
 
-    public static JTextArea getTimeArea(String text) {
-        return new JTextArea(){{
+    public static JTextField getForms(String s) {
+        return new JTextField(s) {{
+            setAlignmentX(Component.CENTER_ALIGNMENT);
+            setPreferredSize(new Dimension(800, 50));
+            setMaximumSize(getPreferredSize());
+            setMinimumSize(getPreferredSize());
+            setFont(new Font("Ariel", Font.PLAIN, 18));
+        }};
+    }
+
+    public static JTextField getTimeArea(String text) {
+        return new JTextField(){{
             setText(text);
+            setHorizontalAlignment(JTextField.CENTER);
+            setAlignmentX(Component.CENTER_ALIGNMENT);
             setBackground(new Color(35, 34, 39));
             setForeground(Color.WHITE);
             setEditable(false);
-            setFont(new Font("Calibri", -1, 25));
+            setFont(new Font("Calibri", Font.PLAIN, 25));
             setCaretColor(getBackground());
         }};
     }
@@ -57,17 +71,12 @@ public class LayoutCreator {
     public static JToggleButton getToggleButton(String buttonType) {
         return new JToggleButton(buttonType) {{
             setActionCommand(buttonType);
-            // setContentAreaFilled(false); // Disable default button rendering
-            // setFocusPainted(false);
             setOpaque(true);
-            //setBorder(new RoundedBorder(75, Color.BLACK));
-            //setBorderPainted(false);
-            setBackground(new Color(30, 24, 39));
+            setAlignmentX(Component.CENTER_ALIGNMENT);
             setForeground(Color.BLACK);
-            setPreferredSize(new Dimension(300, 100));
-            //setFocusPainted(false);
- 
+            setPreferredSize(new Dimension(500, 50));
+            setMaximumSize(getPreferredSize());
+            setMinimumSize(getPreferredSize());
         }};
-        //return new RoundedButton(buttonType, 75);
     }
 }

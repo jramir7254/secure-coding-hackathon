@@ -1,22 +1,20 @@
-package com.hacktheborder;
-
 public class Test {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4};
-        addOne(arr);
-        printArray(arr);
-    }
+        String name;
+        int age;
+        boolean isAdmin;
+        
 
-    public static void addOne(int[] arr) {
-        for (int i = 0; i < arr.length + 1; i++) {
-            arr[i] += 1;
-        }
-    }
+        name = Bob
 
-    public static void printArray(int[] a) {
-        for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i] + " ");
-        }
+        age = "21";
+
+        isadmin = no:
+
+        System.out.println("Hello, my name is " + name + "!");
+        System.out.println("I am " + age + " years old.");
+        System.out.println("Admin status: " + isAdmin);
+
     }
 }
 

@@ -5,19 +5,24 @@ import java.io.Serializable;
 
 public class Question implements Serializable {
     private static final long serialVersionUID = 1L;
-    private final String QUESTION_TYPE;
+    private String questionType, expectedOutput;
     private final String NON_EDITABLE_CODE_1, NON_EDITABLE_CODE_2;
     private String editableCode;
 
-    public Question(String nonEditableCode1, String nonEditableCode2, String editableCode, String questionType) {
+    public Question(String nonEditableCode1, String nonEditableCode2, String editableCode, String questionType, String expectedOutput) {
         this.NON_EDITABLE_CODE_1 = nonEditableCode1;
         this.NON_EDITABLE_CODE_2 = nonEditableCode2;
         this.editableCode = editableCode;
-        this.QUESTION_TYPE = questionType;
+        this.questionType = questionType;
+        this.expectedOutput = expectedOutput;
     }
 
     public String getQuestionType() {
-        return this.QUESTION_TYPE;
+        return this.questionType;
+    }
+
+    public String getExpectedOutput() {
+        return this.expectedOutput;
     }
 
     public String getNonEditableCode1() {
@@ -32,4 +37,3 @@ public class Question implements Serializable {
         return this.NON_EDITABLE_CODE_2;
     }
 }
-
