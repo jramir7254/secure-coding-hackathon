@@ -32,6 +32,7 @@ class QuestionArea extends JPanel {
 
 
         questionArea = LayoutCreator.getQuestion("What type of error is this?");
+        questionArea.putClientProperty("JComponent.roundRect", true);
         nonEditableTextArea1 = LayoutCreator.getTextArea("");
         editableTextArea = LayoutCreator.getTextArea("");
         nonEditableTextArea2 = LayoutCreator.getTextArea("");

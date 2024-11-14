@@ -41,6 +41,7 @@ public class ConsolePart extends JPanel {
 
 
         jsp = new JScrollPane(consoleArea) {{
+            putClientProperty("JComponent.roundRect", true);
             setPreferredSize(new Dimension(800, 300));
             setMinimumSize(consoleArea.getPreferredSize());
             setMaximumSize(consoleArea.getPreferredSize());

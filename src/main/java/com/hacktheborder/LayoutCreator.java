@@ -7,6 +7,9 @@ import java.awt.Font;
 
 import javax.swing.*;
 
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.FlatClientProperties;
+
 /**
  * LayoutCreator
  */
@@ -19,6 +22,7 @@ public class LayoutCreator {
 
     public static JTextArea getQuestion(String s) {
         return new JTextArea(s) {{
+            
             setFont(new Font("Monaco", Font.PLAIN, 15));
             setEditable(false);
             //setBorder(new RoundedBorder(75));
@@ -34,10 +38,16 @@ public class LayoutCreator {
 
     public static JTextArea getTextArea(String s) {
         return new JTextArea(s){{
+            setOpaque(true);
+            FlatClientProperties.T
+            putClientProperty(FlatClientProperties.TEXT_FIELD_ROUND_RECT, true);
             setFont(new Font("Courier New", Font.PLAIN, 12));
             setEditable(false);
             setForeground(Color.WHITE);
-            setBackground(new Color(30, 59, 82));
+            //putClientProperty("JTextArea.roundRect", true);
+            setLineWrap(true);
+            setWrapStyleWord(true);
+            //setBackground(new Color(30, 59, 82));
             setCaretColor(Color.WHITE);
             setPreferredSize(new Dimension(800, 100));
             setMaximumSize(getPreferredSize());
@@ -47,6 +57,7 @@ public class LayoutCreator {
 
     public static JTextField getForms(String s) {
         return new JTextField(s) {{
+            putClientProperty("JComponent.roundRect", true);
             setAlignmentX(Component.CENTER_ALIGNMENT);
             setPreferredSize(new Dimension(800, 50));
             setMaximumSize(getPreferredSize());
@@ -70,10 +81,12 @@ public class LayoutCreator {
 
     public static JToggleButton getToggleButton(String buttonType) {
         return new JToggleButton(buttonType) {{
+            setBackground(Color.RED);
             setActionCommand(buttonType);
             setOpaque(true);
             setAlignmentX(Component.CENTER_ALIGNMENT);
             setForeground(Color.BLACK);
+            putClientProperty("JComponent.roundRect", true);
             setPreferredSize(new Dimension(500, 50));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());

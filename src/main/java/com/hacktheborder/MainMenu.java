@@ -31,7 +31,7 @@ public class MainMenu extends JPanel {
 
 
 
-        teamNameTextField = LayoutCreator.getForms("firstname");
+        teamNameTextField = LayoutCreator.getForms("team name");
         numMembersTextField = LayoutCreator.getForms("lastname");
         idNumTextField = LayoutCreator.getForms("id num");
 
