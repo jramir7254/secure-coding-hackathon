@@ -17,14 +17,9 @@ public class ButtonArea extends JPanel {
     private final String[] OPTIONS;
     private ButtonGroup group;
     private JButton submitButton;
-    private Question question;
-    private QuestionArea questionArea;
 
-    public void updateAll() {
-        question = ClassManager.getCurrentQuestion();
-        questionArea = ClassManager.getQuestionArea();
-    }
 
+    
     public ButtonArea() {
 
 
@@ -59,7 +54,7 @@ public class ButtonArea extends JPanel {
 
     public void validateQuestion(){
         if(isResponseCorrect()) {
-            questionArea.textPart();
+            ApplicationManager.setSecSection();
         } else {
             shuffleButtons();
             group.clearSelection();
@@ -103,6 +98,6 @@ public class ButtonArea extends JPanel {
 
 
     public boolean isResponseCorrect() {
-        return group.getSelection().getActionCommand().equals(question.getQuestionType());
+        return group.getSelection().getActionCommand().equals(ApplicationManager.getCurrentQuestion().getQuestionType());
     }
 }

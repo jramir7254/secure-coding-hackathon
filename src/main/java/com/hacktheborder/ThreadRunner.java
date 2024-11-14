@@ -2,22 +2,22 @@ package com.hacktheborder;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.module.FindException;
-import java.util.logging.Logger;
 
 public class ThreadRunner extends Thread {
     private ProcessBuilder processBuilder;
     private Process process;
-    private File file;
+    private File windowsFile, appleFile;
     private String output;
 
     public ThreadRunner() {
         try {
-            file = new File("src/main/java/com/hacktheborder/");
+            appleFile = new File("src/main/java/com/hacktheborder/");
+            windowsFile = new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\");
             processBuilder = new ProcessBuilder("java", "-cp", ".", "Test.java");
             processBuilder.redirectErrorStream(true);
-            processBuilder.directory(file);
+            processBuilder.directory(windowsFile);
         } catch (Exception e) {
 
         }
@@ -38,9 +38,10 @@ public class ThreadRunner extends Thread {
             if (!process.waitFor(5, java.util.concurrent.TimeUnit.SECONDS)) {
                 // Timeout exceeded: terminate the process and interrupt this thread
                 process.destroy();
-                System.out.println("Process took too long and was terminated.");
+                this.interrupt();
+                System.out.println("Process took too long and was terminated.\n");
             } else {
-                System.out.println("Process completed successfully.");
+                System.out.println("Process completed successfully.\n");
             }
             
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -48,16 +49,35 @@ public class ThreadRunner extends Thread {
             
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println("Output: " + line);
+                //System.out.println("Output: " + line);
                 sb.append(line).append("\n");     
             }
+
+            
             output = sb.toString();
+
+
+            
             
         } catch (Exception e) {
 
-        } finally  {
-            process.destroy();
+        } finally {
+            // Ensure the process is terminated and resources are freed
+            if (process != null && process.isAlive()) {
+                process.destroy();
+            }
+
+            // Close any lingering streams to prevent resource leaks
+            try {
+                
+                process.getInputStream().close();
+                process.getErrorStream().close();
+                process.getOutputStream().close();
+            } catch (IOException e) {
+                System.err.println("Failed to close streams: " + e.getMessage());
+            }
+            
+            System.out.println("ThreadRunner has finished execution.\n");
         }
     }
 }
-

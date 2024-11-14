@@ -1,6 +1,8 @@
 package com.hacktheborder;
 
+import java.awt.Container;
 import java.awt.Dimension;
+
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -25,9 +27,15 @@ public class EndGameScreen extends JPanel {
             setPreferredSize(new Dimension(100, 50));
             setMinimumSize(getPreferredSize());
             setMaximumSize(getPreferredSize());
+            setAlignmentX(Container.CENTER_ALIGNMENT);
+            addActionListener(e -> {
+                ApplicationManager.resetAll();
+            });
         }};
 
-        add(newGame);
+        //add(newGame);
         add(mainMenu);
     }
+
+
 }

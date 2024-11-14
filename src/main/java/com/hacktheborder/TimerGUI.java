@@ -9,15 +9,14 @@ import java.awt.event.ActionListener;
 
 public class TimerGUI extends JPanel {
     private Timer timer;
+    private JTextField timeTextContainer;
+    private JTextField userInfoSection;
+    private JTextField userLivesSection;
     private int totalTimeInSeconds;
-    private JTextField label;
-    JTextField userInfoSection;
-    JTextField userLivesSection;
-    private User user;
 
     public TimerGUI() {
         totalTimeInSeconds = 0; 
-        label = LayoutCreator.getTimeArea("");
+        timeTextContainer = LayoutCreator.getTimeArea("");
  
 
         userInfoSection = new JTextField();
@@ -27,14 +26,14 @@ public class TimerGUI extends JPanel {
         setLayout(new FlowLayout(FlowLayout.CENTER));
         setPreferredSize(new Dimension(WIDTH, 100));
         setBackground(new Color(30, 34, 39));
-        label.setBackground(new Color(35, 34, 39));
-        label.setForeground(Color.WHITE);
+        timeTextContainer.setBackground(new Color(35, 34, 39));
+        timeTextContainer.setForeground(Color.WHITE);
      
 
 
         timer = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                label.setText("Total Time: " + formatTime(totalTimeInSeconds));
+                timeTextContainer.setText("Total Time: " + formatTime(totalTimeInSeconds));
                 revalidate();
                 repaint();
                 totalTimeInSeconds++;
@@ -43,7 +42,7 @@ public class TimerGUI extends JPanel {
 
         
         add(userLivesSection);
-        add(label, CENTER_ALIGNMENT);
+        add(timeTextContainer, CENTER_ALIGNMENT);
         add(userInfoSection);
     }
 
@@ -56,12 +55,20 @@ public class TimerGUI extends JPanel {
     }
 
     public void updateAll() {
-        user = ClassManager.getUser();
-        String userInfo = user.getFirstName() + user.getLastName() + user.getEPCCIDNumber();
-        userInfoSection.setText(userInfo);
-        userLivesSection.setText("Lives: " + user.getNumLives());
-        revalidate();
+        Team currentTeam = ApplicationManager.getCurrentTeam();
+        String teamInfo = currentTeam.getTeamName() + currentTeam.getNumMembers() + currentTeam.getEPCCIDNumber();
+        userInfoSection.setText(teamInfo);
+        userLivesSection.setText("Lives: ");
+
+    }
+
+    public void resetAll() {
+        totalTimeInSeconds = 0;
+        timeTextContainer.setText("Total Time: " + formatTime(totalTimeInSeconds));
+        userInfoSection.setText("");
+        userLivesSection.setText("");
         repaint();
+        revalidate();
     }
 
 

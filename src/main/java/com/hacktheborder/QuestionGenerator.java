@@ -9,7 +9,7 @@ public class QuestionGenerator {
     public static void main(String[] args) {
         ArrayList <Question> questions = new ArrayList<>();
         try {
-            Scanner scan = new Scanner(new File("src/main/java/com/hacktheborder/Text.txt"));
+            Scanner scan = new Scanner(new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\Text.txt"));
             StringBuilder sb = new StringBuilder();
             String[] strs = new String[3];
             String questionType = "";
@@ -44,7 +44,7 @@ public class QuestionGenerator {
             }
             scan.close();
 
-            try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("src/main/java/com/hacktheborder/Question.ser")))) {
+            try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\Question.ser")))) {
                 for(Question q : questions) {
                     oos.writeObject(q);
                 }

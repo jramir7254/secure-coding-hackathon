@@ -5,11 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.InputStreamReader;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -21,16 +17,9 @@ public class ConsolePart extends JPanel {
     private JButton runButton, resetButton, nextButton;
     private JTextArea consoleArea;
     private JScrollPane jsp;
-    private Question question;
     private QuestionArea questionArea;
     private ThreadRunner runner;
 
-
-    public void updateAll() {
-        question = ClassManager.getCurrentQuestion();
-        runner = ClassManager.getThreadRunner();
-        questionArea = ClassManager.getQuestionArea();
-    }
 
     public ConsolePart() {
         setLayout(new BorderLayout());
@@ -39,7 +28,7 @@ public class ConsolePart extends JPanel {
         setMaximumSize(getPreferredSize());
         setBackground(new Color(77, 88, 101));
 
-
+        //windowsFile = new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\Test.java");
 
         consoleArea = new JTextArea() {{
             setBackground(Color.BLACK);
@@ -67,12 +56,7 @@ public class ConsolePart extends JPanel {
             addActionListener(e -> {
                 write();
                 run();
-                if(isExpectedOutput()) {
-                    System.out.println("Expected Output");
-                    buttonsJPanel.add(nextButton);
-                    revalidate();
-                    repaint();
-                }
+                validateOutPut();
             });
         }};
 
@@ -80,7 +64,7 @@ public class ConsolePart extends JPanel {
         resetButton = new JButton("Reset") {{
             setPreferredSize(new Dimension(100, 50));
             addActionListener(e -> {
-                questionArea.resetEditableTextArea();
+                ApplicationManager.getQuestionArea().resetEditableTextArea();
             });
         }};
 
@@ -88,12 +72,7 @@ public class ConsolePart extends JPanel {
         nextButton = new JButton("Next") {{
             setPreferredSize(new Dimension(100, 50));
             addActionListener(e -> {
-                consoleArea.setText("");
-                ClassManager.updateQuestion();
-                ClassManager.updateAll();
-                buttonsJPanel.remove(nextButton);
-                revalidate();
-                repaint();
+                prepareNextQuestion();
             });
         }};
 
@@ -113,32 +92,59 @@ public class ConsolePart extends JPanel {
         add(buttonsJPanel, BorderLayout.SOUTH);
     }
 
+    
+    public void prepareNextQuestion() {
+        consoleArea.setText("");
+        ApplicationManager.updateQuestion();     
+        buttonsJPanel.remove(nextButton);
+        revalidate();
+        repaint();
+    }
+
+
+    public void validateOutPut() {
+        if(isExpectedOutput()) {
+            System.out.println("Expected Output");
+            buttonsJPanel.add(nextButton);
+            revalidate();
+            repaint();
+        }
+    }
+
 
     public boolean isExpectedOutput() {
-        //return true;
-        return consoleArea.getText().equals(question.getExpectedOutput());
+        return consoleArea.getText().equals(ApplicationManager.getCurrentQuestion().getExpectedOutput());
     }
 
 
     private void write() {
-        String code = question.getNonEditableCode1() + questionArea.getEditableTextAreaText() + question.getNonEditableCode2();
-        try (FileWriter fw = new FileWriter(new File("src/main/java/com/hacktheborder/Test.java"))) {
-            fw.append(code);
-        } catch (Exception e) {
-
-        }
+        MyFileWriter fileWriter = new MyFileWriter();
+        fileWriter.writeToFile();
     }
 
 
+    public void setOutPut() {
+        consoleArea.setText(runner.getOutput());
+    }
+
+  
     public void run() {
         try {
-            
+            runner = ApplicationManager.getThreadRunner();
+            System.out.println("Starting Thread\n");
             runner.start();
-            //runner.join();
-            consoleArea.setText(runner.getOutput());
+            System.out.println("Thread Started\n");
+            runner.join();
+            System.out.println("Waiting on Thread\n");
+            setOutPut();
+
+            if (!runner.isAlive()) {
+                System.out.println("ThreadRunner has terminated successfully.\n");
+            } else {
+                System.err.println("ThreadRunner is still alive.\n");
+            }
         } catch (Exception e) {
 
         }
-
     }
 }

@@ -1,20 +1,21 @@
+import java.util.Random;
 public class Test {
     public static void main(String[] args) {
-        String name;
-        int age;
-        boolean isAdmin;
-        
+        String name = "Jay";
+        String password = getPassword();
+    }
 
-        name = Bob
+    public static String getPassword() {
+        String password = "";
+        for (int i = 0; i < 8; i++)
+            password += getRandomChar();
+        System.out.println("");
+        return password;
+    }
 
-        age = "21";
-
-        isadmin = no:
-
-        System.out.println("Hello, my name is " + name + "!");
-        System.out.println("I am " + age + " years old.");
-        System.out.println("Admin status: " + isAdmin);
-
+    public static char getRandomChar() {
+        Random random = new Random();
+        return (char)(random.nextInt((122 - 32) + 1) + 32);
     }
 }
 

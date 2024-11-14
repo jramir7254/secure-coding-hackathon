@@ -1,67 +1,23 @@
 package com.hacktheborder;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.UIManager.LookAndFeelInfo;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+public class Main {
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 
-public class Main extends JFrame  {
-    private final int WIDTH = 1936, HEIGHT = 1048;
-    private QuestionArea questionArea;
-    private MainMenu mainMenu;
-    private TimerGUI timer;
+            for(LookAndFeelInfo lafi : UIManager.getInstalledLookAndFeels()) {
+                System.out.println(lafi);
+            }
+            ApplicationManager.start();
 
-
-
-    public void updateAll() {
-        mainMenu = ClassManager.getMainMenu();
-        questionArea = ClassManager.getQuestionArea();
-        timer = ClassManager.getTimerGUI();
+        } catch (ClassNotFoundException  | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            System.out.println("yea no");
+            System.out.println(e.getMessage());
+        }
     }
-
-    
-    public Main() {
-        updateAll();
-
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
-
-
-        add(timer, BorderLayout.NORTH);
-        add(mainMenu, BorderLayout.CENTER);
-
-        setVisible(true);
-    }
-
-
-    public void addBorders() {
-        add(new JPanel() {{
-            setPreferredSize(new Dimension(WIDTH, 100));
-            setBackground(new Color(77, 88, 115));
-        }}, BorderLayout.NORTH);
-        add(new JPanel() {{
-            setPreferredSize(new Dimension(500, 100));
-            setBackground(new Color(77, 88, 115));
-        }}, BorderLayout.EAST);
-        add(new JPanel() {{
-            setPreferredSize(new Dimension(WIDTH, 100));
-            setBackground(new Color(77, 88, 115));
-        }}, BorderLayout.SOUTH);
-        add(new JPanel() {{
-            setPreferredSize(new Dimension(500, 100));
-            setBackground(new Color(77, 88, 115));
-        }}, BorderLayout.WEST);
-    }
-
-
-    public void updateScreen() {
-        remove(mainMenu);
-        add(questionArea, BorderLayout.CENTER);
-        timer.startTimer();
-        revalidate();
-        repaint();
-    }   
 }

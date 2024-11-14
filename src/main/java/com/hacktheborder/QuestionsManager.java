@@ -11,11 +11,19 @@ import java.util.Stack;
 
 public class QuestionsManager {
     private Stack <Question> questions;
-    private String fileName;
+    private File windowsFile, appleFile;
 
 
     public QuestionsManager() {
-        fileName = "src/main/java/com/hacktheborder/Question.ser";
+        appleFile = new File("src/main/java/com/hacktheborder/Question.ser");
+        windowsFile = new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\Question.ser");
+        questions = new Stack<>() {{
+            addAll(getQuestions());
+        }};
+    }
+
+
+    public void regenerateQuestions() {
         questions = new Stack<>() {{
             addAll(getQuestions());
         }};
@@ -37,7 +45,7 @@ public class QuestionsManager {
     private ArrayList<Question> getQuestions() {
         ArrayList<Question> temp = new ArrayList<>();
 
-        try(ObjectInputStream oos = new ObjectInputStream(new FileInputStream(new File(fileName)))) {
+        try(ObjectInputStream oos = new ObjectInputStream(new FileInputStream(windowsFile))) {
             while (true) {
                 try {
                     temp.add((Question)oos.readObject());             

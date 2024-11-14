@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class SQLConnector {
@@ -13,8 +14,9 @@ public class SQLConnector {
 
    
     public SQLConnector() {
-        //String url = "jdbc:mysql://192.168.1.203:3306/secure_coding_database";
-        String url = "jdbc:mysql://10.37.19.27:3306/secure_coding_database";
+        String url = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
+        //String url = "jdbc:mysql://hacktheborder.ddns.net:3306/secure_coding_database";
+        //String url = "jdbc:mysql://10.37.19.27:3306/secure_coding_database";
         String user = "new_user";
         String password = "Qpzm()56";
 
@@ -31,11 +33,12 @@ public class SQLConnector {
 
     }
 
-    public boolean userExist(int id) {
+    public boolean teamExist(String teamName) throws SQLException {
         try {
 
-            String query = "SELECT COUNT(*) FROM PERSONS WHERE EPCC_ID_Number = " + id + ";";
+            String query = "SELECT COUNT(*) FROM Teams WHERE Team_Name = ?;";
             statement = connection.prepareStatement(query);
+            statement.setString(1, teamName.toUpperCase());
             resultSet = statement.executeQuery();
             resultSet.next();
            
@@ -43,7 +46,7 @@ public class SQLConnector {
 
         } catch (Exception e) {
 
-            return false;
+           throw new SQLException();
 
         } finally {
 
@@ -59,14 +62,16 @@ public class SQLConnector {
         }
     }
 
-    public void createNewUser(String lastName, String firstName, int epccIdNumber) {
+
+    public void insertNewTeam(String lastName, int numMembers, int epccIdNumber) throws SQLException {
         try {
-            String query = "INSERT INTO PERSONS VALUES (?, ?, ?);";
+            String query = "INSERT INTO Teams VALUES (?, ?, ?, ?);";
 
             statement = connection.prepareStatement(query);
             statement.setString(1, lastName);
-            statement.setString(2, firstName);
+            statement.setInt(2, numMembers);
             statement.setInt(3, epccIdNumber);
+            statement.setInt(4, 0);
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
@@ -75,10 +80,11 @@ public class SQLConnector {
 
             System.out.println("Finished Creating");
 
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+     
             e.printStackTrace();
             System.out.println("error creating");
+            throw new SQLException();
 
         } finally {
 
@@ -94,39 +100,39 @@ public class SQLConnector {
     }
 
 
-    public User getUser(int epccIdNumber) {
+    public Team getTeam(String getTeamName) {
         try {
-            String sql = "SELECT * FROM PERSONS WHERE EPCC_ID_Number = ?";
-            String lastName = "", firstName = "";
-            int id = -1;
+            String teamName = null;
+            int numMembers = -1, idNum = -1, teamScore = -1;
 
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, epccIdNumber);
+            String query = "SELECT * FROM Teams WHERE Team_Name = ?;";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, getTeamName.toUpperCase());
+
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                lastName = resultSet.getString("Last_Name");
-                firstName = resultSet.getString("First_Name");
-                id = resultSet.getInt("EPCC_ID_Number");
+                teamName = resultSet.getString("Team_Name");
+                numMembers = resultSet.getInt("Num_Members");
+                idNum = resultSet.getInt("ID_Number");
+                teamScore = resultSet.getInt("Team_Score");
+                
             }
-
-            System.out.println(lastName + " " + firstName + " " + id);
-            return new User(lastName, firstName, id);
+            System.out.printf("Inside SQLConnection %s, %d, %d", teamName, numMembers, idNum, teamScore);
+            return new Team(teamName, numMembers, idNum, teamScore);
 
         } catch (Exception e) {
+
             return null;
+
         } finally {
-
             try {
-
                 statement.close();
                 resultSet.close();
-
             } catch (Exception e) {
 
             } 
 
         }
-      
     }
 }
