@@ -16,7 +16,7 @@ public class QuestionsManager {
 
     public QuestionsManager() {
         appleFile = new File("src/main/java/com/hacktheborder/Question.ser");
-        windowsFile = new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\Question.ser");
+        windowsFile = new File("secure-coding\\src\\main\\resources\\Question.ser");
         questions = new Stack<>() {{
             addAll(getQuestions());
         }};

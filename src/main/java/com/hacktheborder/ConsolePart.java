@@ -17,8 +17,6 @@ public class ConsolePart extends JPanel {
     private JButton runButton, resetButton, nextButton;
     private JTextArea consoleArea;
     private JScrollPane jsp;
-    private QuestionArea questionArea;
-    private ThreadRunner runner;
 
 
     public ConsolePart() {
@@ -131,7 +129,7 @@ public class ConsolePart extends JPanel {
   
     public void run() {
         try {
-            runner = ApplicationManager.getThreadRunner();
+            ThreadRunner runner = new ThreadRunner();
             System.out.println("Starting Thread\n");
             runner.start();
             System.out.println("Thread Started\n");

@@ -96,8 +96,6 @@ public class MainMenu extends JPanel {
 
         } catch (NumberFormatException e) {
 
-        } catch (InvalidNumberOfMembersException e) {
-
         } catch (Exception e) {
 
         }

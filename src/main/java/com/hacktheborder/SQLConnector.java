@@ -14,45 +14,57 @@ public class SQLConnector {
     private ResultSet resultSet;
     private PreparedStatement statement;
 
-    public static void main(String[] args) {
-        new SQLConnector();
-    }
-
+    //String url = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
+    //String url = "jdbc:mysql://hacktheborder.ddns.net:3306/secure_coding_database";
+    //String url = "jdbc:mysql://10.37.52.227:3306/secure_coding_database";
    
+
+
+
+
     public SQLConnector() {
-        Properties properties = new Properties();
-
-        try (InputStream input = SQLConnector.class.getClassLoader().getResourceAsStream("config.properties")) {
-            if (input == null) {
-                System.out.println("Sorry, unable to find config.properties");
-                return;
-            }
-            System.out.println("Name: " + properties.getProperty("name"));
-            System.out.println("PW: " + properties.getProperty("password"));
-            properties.load(input);
-
-        //String url = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
-        //String url = "jdbc:mysql://hacktheborder.ddns.net:3306/secure_coding_database";
-        String url = "jdbc:mysql://10.37.52.227:3306/secure_coding_database";
-        String user = "new_user";
-        String password = "Qpzm()56";
+        String url = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(url, properties.getProperty("name"), properties.getProperty("password"));
+            String[] propertyValues = getProperties();
+            connection = DriverManager.getConnection(url,  propertyValues[0], propertyValues[1]);
             System.out.println("Connected to the database!");
         
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Connection error: " + e.getMessage());
         }
-    } catch (Exception e) {
-
     }
 
 
+
+
+
+    
+
+    public String[] getProperties() throws Exception {
+        Properties properties = new Properties();
+    
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+
+            if (input == null) 
+                System.out.println("Sorry, unable to find config.properties");
+            
+            properties.load(input);
+            return new String[] { properties.getProperty("database.name"), properties.getProperty("database.password") };
+
+        } catch (Exception e) {
+            throw new Exception();
+        }
     }
 
+
+
+
+
+    
+    
     public boolean teamExist(String teamName) throws SQLException {
         try {
 
@@ -83,6 +95,11 @@ public class SQLConnector {
     }
 
 
+
+
+
+    
+    
     public void insertNewTeam(String lastName, int numMembers, int epccIdNumber) throws SQLException {
         try {
             String query = "INSERT INTO Teams VALUES (?, ?, ?, ?);";
@@ -120,6 +137,11 @@ public class SQLConnector {
     }
 
 
+
+
+
+    
+    
     public Team getTeam(String getTeamName) {
         try {
             String teamName = null;

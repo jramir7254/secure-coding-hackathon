@@ -1,12 +1,16 @@
 package com.hacktheborder;
 
 import java.awt.BorderLayout;
+import java.io.File;
+import java.nio.file.Path;
+
+import java.nio.file.Paths;
 import java.sql.SQLException;
 
 public class ApplicationManager {
 
     
-    private final static  SQLConnector      sqlConnector     = new SQLConnector();
+    private static  SQLConnector      sqlConnector     = new SQLConnector();
     private final static  QuestionArea      questionArea     = new QuestionArea();
     private final static  ButtonArea        buttonArea       = new ButtonArea( );
     private final static  ConsolePart       consolePart      = new ConsolePart( );
@@ -23,6 +27,23 @@ public class ApplicationManager {
 
     public static void start() {
         mainWindow = new MainWindow();
+    }
+
+
+    public File getFile() {
+        Path baseDir = Paths.get(System.getProperty("user.dir"));
+        Path relativePath;
+        if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
+            relativePath = baseDir.resolve("src/main/resources/yourfile.txt");
+        } else {
+            relativePath = baseDir.resolve("src\\main\\resources\\yourfile.txt");
+        }
+        return relativePath.toFile();
+    }
+
+
+    public static void retrySQLConnection(String ip) {
+        sqlConnector = new SQLConnector();
     }
 
 

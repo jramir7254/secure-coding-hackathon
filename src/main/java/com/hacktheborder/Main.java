@@ -17,10 +17,11 @@ public class Main {
             UIManager.put("Button.arc", 20); 
             UIManager.put("TextField.arc", 10); 
             UIManager.put("TextComponent.arc", 20);
+            System.out.println(System.getProperty("user.dir"));
     
 
          
-            ApplicationManager.start();
+            //ApplicationManager.start();
 
         } catch (Exception e) {
             System.out.println("yea no");
