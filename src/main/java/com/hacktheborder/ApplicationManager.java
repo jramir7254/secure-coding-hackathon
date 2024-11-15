@@ -6,11 +6,11 @@ import java.sql.SQLException;
 public class ApplicationManager {
 
     
-    private final static  QuestionsManager  questionsManager = new QuestionsManager();
+    private final static  SQLConnector      sqlConnector     = new SQLConnector();
     private final static  QuestionArea      questionArea     = new QuestionArea();
     private final static  ButtonArea        buttonArea       = new ButtonArea( );
     private final static  ConsolePart       consolePart      = new ConsolePart( );
-    private final static  SQLConnector      sqlConnector     = new SQLConnector();
+    private final static  QuestionsManager  questionsManager = new QuestionsManager();
     private final static  MainMenu          mainMenu         = new MainMenu();
     private final static  TimerGUI          timerGUI         = new TimerGUI();
     private final static EndGameScreen      EndGameScreen    = new EndGameScreen();

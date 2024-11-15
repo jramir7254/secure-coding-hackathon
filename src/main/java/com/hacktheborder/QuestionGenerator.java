@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class QuestionGenerator {
+    static private File windowsFile, appleFile;
     public static void main(String[] args) {
+        appleFile = new File("src/main/java/com/hacktheborder/");
+            windowsFile = new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\");
+
         ArrayList <Question> questions = new ArrayList<>();
         try {
             Scanner scan = new Scanner(new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\Text.txt"));

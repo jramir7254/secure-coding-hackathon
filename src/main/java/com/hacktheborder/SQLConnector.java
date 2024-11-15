@@ -1,10 +1,12 @@
 package com.hacktheborder;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 
 public class SQLConnector {
@@ -12,23 +14,41 @@ public class SQLConnector {
     private ResultSet resultSet;
     private PreparedStatement statement;
 
+    public static void main(String[] args) {
+        new SQLConnector();
+    }
+
    
     public SQLConnector() {
-        String url = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
+        Properties properties = new Properties();
+
+        try (InputStream input = SQLConnector.class.getClassLoader().getResourceAsStream("config.properties")) {
+            if (input == null) {
+                System.out.println("Sorry, unable to find config.properties");
+                return;
+            }
+            System.out.println("Name: " + properties.getProperty("name"));
+            System.out.println("PW: " + properties.getProperty("password"));
+            properties.load(input);
+
+        //String url = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
         //String url = "jdbc:mysql://hacktheborder.ddns.net:3306/secure_coding_database";
-        //String url = "jdbc:mysql://10.37.19.27:3306/secure_coding_database";
+        String url = "jdbc:mysql://10.37.52.227:3306/secure_coding_database";
         String user = "new_user";
         String password = "Qpzm()56";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url, properties.getProperty("name"), properties.getProperty("password"));
             System.out.println("Connected to the database!");
         
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Connection error: " + e.getMessage());
         }
+    } catch (Exception e) {
+
+    }
 
 
     }
@@ -73,8 +93,8 @@ public class SQLConnector {
             statement.setInt(3, epccIdNumber);
             statement.setInt(4, 0);
 
-            int rowsInserted = statement.executeUpdate();
-            if (rowsInserted > 0) {
+     
+            if (statement.executeUpdate() > 0) {
                 System.out.println("A new row was inserted successfully!");
             }
 

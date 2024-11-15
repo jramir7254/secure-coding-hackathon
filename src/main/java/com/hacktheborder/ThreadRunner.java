@@ -17,7 +17,7 @@ public class ThreadRunner extends Thread {
             windowsFile = new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\");
             processBuilder = new ProcessBuilder("java", "-cp", ".", "Test.java");
             processBuilder.redirectErrorStream(true);
-            processBuilder.directory(windowsFile);
+            processBuilder.directory(appleFile);
         } catch (Exception e) {
 
         }

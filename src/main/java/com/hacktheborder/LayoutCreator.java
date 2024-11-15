@@ -39,8 +39,8 @@ public class LayoutCreator {
     public static JTextArea getTextArea(String s) {
         return new JTextArea(s){{
             setOpaque(true);
-            FlatClientProperties.T
-            putClientProperty(FlatClientProperties.TEXT_FIELD_ROUND_RECT, true);
+            
+            //putClientProperty(FlatClientProperties.TEXT_FIELD_ROUND_RECT, true);
             setFont(new Font("Courier New", Font.PLAIN, 12));
             setEditable(false);
             setForeground(Color.WHITE);

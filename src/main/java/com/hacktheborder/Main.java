@@ -13,7 +13,7 @@ public class Main {
         try {
             
             //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            FlatDarkLaf.setup();
+            //FlatDarkLaf.setup();
             UIManager.put("Button.arc", 20); 
             UIManager.put("TextField.arc", 10); 
             UIManager.put("TextComponent.arc", 20);

@@ -93,7 +93,7 @@ public class ConsolePart extends JPanel {
         add(buttonsJPanel, BorderLayout.SOUTH);
     }
 
-    
+
     public void prepareNextQuestion() {
         consoleArea.setText("");
         ApplicationManager.updateQuestion();     

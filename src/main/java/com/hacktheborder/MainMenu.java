@@ -78,7 +78,7 @@ public class MainMenu extends JPanel {
 
             System.out.println("Inside MainMenu after getting teamName");
             int numMembers = Integer.valueOf(numMembersTextField.getText());
-            if(numMembers < 2 || numMembers > 4)
+            if(numMembers < 1 || numMembers > 4)
                 throw new Exception("Please enter a number between 2 and 4!");
 
             System.out.println("Inside MainMenu after getting numMembers");
@@ -87,6 +87,7 @@ public class MainMenu extends JPanel {
             int idNumOfPersonPlaying = Integer.valueOf(idNumTextField.getText());
             if(String.valueOf(idNumOfPersonPlaying).length() != 8)
                 throw new Exception("Please enter your 8 digit EPCC ID Number!");
+
 
             System.out.println("Inside MainMenu before creating new team");
             ApplicationManager.createNewTeam(teamName, idNumOfPersonPlaying, idNumOfPersonPlaying);

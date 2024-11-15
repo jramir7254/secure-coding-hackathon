@@ -17,7 +17,8 @@ public class MainWindow extends JFrame  {
     public MainWindow() {
         //updateAll();
 
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // /setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setSize(new Dimension(500, 300));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 

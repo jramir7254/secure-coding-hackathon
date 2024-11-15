@@ -45,7 +45,7 @@ public class QuestionsManager {
     private ArrayList<Question> getQuestions() {
         ArrayList<Question> temp = new ArrayList<>();
 
-        try(ObjectInputStream oos = new ObjectInputStream(new FileInputStream(windowsFile))) {
+        try(ObjectInputStream oos = new ObjectInputStream(new FileInputStream(appleFile))) {
             while (true) {
                 try {
                     temp.add((Question)oos.readObject());             
