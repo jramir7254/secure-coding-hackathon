@@ -12,16 +12,23 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class ConsolePart extends JPanel {
+import com.hacktheborder.managers.ApplicationManager;
+import com.hacktheborder.managers.ApplicationManager.QuestionAreaManager;
+import com.hacktheborder.managers.ApplicationManager.TeamManager;
+import com.hacktheborder.managers.GUIManager;
+import com.hacktheborder.utilities.MyFileWriter;
+import com.hacktheborder.utilities.ThreadRunner;
+
+public class DebuggingPanel extends JPanel {
     private JPanel buttonsJPanel;
     private JButton runButton, resetButton, nextButton;
     private JTextArea consoleArea;
     private JScrollPane jsp;
 
 
-    public ConsolePart() {
+    public DebuggingPanel() {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(800, 400));
+        setPreferredSize(new Dimension(800, 350));
         setMinimumSize(getPreferredSize());
         setMaximumSize(getPreferredSize());
         setBackground(new Color(77, 88, 101));
@@ -30,9 +37,10 @@ public class ConsolePart extends JPanel {
 
         consoleArea = new JTextArea() {{
             setBackground(Color.BLACK);
+            setEditable(false);
             setForeground(Color.WHITE);
-            setFont(new Font("Calibri", Font.PLAIN, 15));
-            setPreferredSize(new Dimension(800, 300));
+            setFont(new Font("Courier New", Font.PLAIN, 13));
+            setPreferredSize(new Dimension(GUIManager.PANEL_WIDTH, 300));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
         }};
@@ -71,17 +79,18 @@ public class ConsolePart extends JPanel {
         nextButton = new JButton("Next") {{
             setPreferredSize(new Dimension(100, 50));
             addActionListener(e -> {
+                
                 prepareNextQuestion();
             });
         }};
 
 
         buttonsJPanel = new JPanel() {{
-            setPreferredSize(new Dimension(600,100));
+            setPreferredSize(new Dimension(600,75));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setLayout(new FlowLayout(FlowLayout.CENTER));
-            setBackground(Color.GREEN);
+            setBackground(getBackground());
             add(runButton);
             add(resetButton);
         }};
@@ -94,16 +103,15 @@ public class ConsolePart extends JPanel {
 
     public void prepareNextQuestion() {
         consoleArea.setText("");
-        ApplicationManager.updateQuestion();     
         buttonsJPanel.remove(nextButton);
-        revalidate();
-        repaint();
+        QuestionAreaManager.updateQuestion();
     }
 
 
     public void validateOutPut() {
         if(isExpectedOutput()) {
-            System.out.println("Expected Output");
+            TeamManager.updateTeamScore();
+
             buttonsJPanel.add(nextButton);
             revalidate();
             repaint();
@@ -122,7 +130,7 @@ public class ConsolePart extends JPanel {
     }
 
 
-    public void setOutPut() {
+    public void setOutPut(ThreadRunner runner) {
         consoleArea.setText(runner.getOutput());
     }
 
@@ -135,7 +143,7 @@ public class ConsolePart extends JPanel {
             System.out.println("Thread Started\n");
             runner.join();
             System.out.println("Waiting on Thread\n");
-            setOutPut();
+            setOutPut(runner);
 
             if (!runner.isAlive()) {
                 System.out.println("ThreadRunner has terminated successfully.\n");

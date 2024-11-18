@@ -1,4 +1,4 @@
-package com.hacktheborder;
+package com.hacktheborder.utilities;
 
 import java.io.EOFException;
 import java.io.File;
@@ -9,14 +9,11 @@ import java.util.Collections;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-public class QuestionsManager {
+public class QuestionManager {
     private Stack <Question> questions;
-    private File windowsFile, appleFile;
 
 
-    public QuestionsManager() {
-        appleFile = new File("src/main/java/com/hacktheborder/Question.ser");
-        windowsFile = new File("secure-coding\\src\\main\\resources\\Question.ser");
+    public QuestionManager() {
         questions = new Stack<>() {{
             addAll(getQuestions());
         }};
@@ -43,9 +40,9 @@ public class QuestionsManager {
 
 
     private ArrayList<Question> getQuestions() {
-        ArrayList<Question> temp = new ArrayList<>();
+        ArrayList<Question> temp = new ArrayList<>(10);
 
-        try(ObjectInputStream oos = new ObjectInputStream(new FileInputStream(appleFile))) {
+        try(ObjectInputStream oos = new ObjectInputStream(ClassLoader.getSystemResourceAsStream("Question.ser"))) {
             while (true) {
                 try {
                     temp.add((Question)oos.readObject());             

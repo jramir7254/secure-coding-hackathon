@@ -1,4 +1,4 @@
-package com.hacktheborder;
+package com.hacktheborder.utilities;
 
 import java.io.Serializable;
 

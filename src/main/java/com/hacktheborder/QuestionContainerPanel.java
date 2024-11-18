@@ -1,14 +1,25 @@
 package com.hacktheborder;
 
 import javax.swing.*;
+
+import org.fife.ui.rtextarea.RTextArea;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
+import com.hacktheborder.custom.classes.RoundedJPanel;
+import com.hacktheborder.custom.classes.RoundedJTextArea;
+import com.hacktheborder.managers.ApplicationManager;
+import com.hacktheborder.managers.GUIManager;
+import com.hacktheborder.utilities.Question;
+
 import java.awt.*;
 
 
 
-class QuestionArea extends JPanel {
-    private JTextArea questionArea;
-    private JTextArea nonEditableTextArea1, nonEditableTextArea2;
-    private JTextArea editableTextArea;
+public class QuestionContainerPanel extends RoundedJPanel {
+    private RoundedJTextArea questionArea;
+    private RTextArea nonEditableTextArea1, nonEditableTextArea2;
+    private RTextArea editableTextArea;
+    private int cornerRadius;
 
     public void updateTextAreaFields() {
         Question question = ApplicationManager.getCurrentQuestion();
@@ -16,28 +27,31 @@ class QuestionArea extends JPanel {
         nonEditableTextArea1.setText(question.getNonEditableCode1());
         editableTextArea.setText(question.getEditableCode());
         editableTextArea.setEditable(false);
-        editableTextArea.setBackground(new Color(30, 59, 82));
+        editableTextArea.setBackground(new Color(40, 44, 52));
         nonEditableTextArea2.setText(question.getNonEditableCode2());
 
     }
 
-    public QuestionArea() {
-        setBackground(new Color(77, 88, 101));
-        //setBackground(Color.RED);
-        setPreferredSize(new Dimension(800, 800));
+
+
+    public QuestionContainerPanel() {
+        super(75, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR); 
+
+        setOpaque(false);
+        setPreferredSize(new Dimension(GUIManager.PANEL_WIDTH, GUIManager.PANEL_HEIGHT));
         setMaximumSize(getPreferredSize());
         setMinimumSize(getPreferredSize());
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
-        questionArea = LayoutCreator.getQuestion("What type of error is this?");
-        questionArea.putClientProperty("JComponent.roundRect", true);
-        nonEditableTextArea1 = LayoutCreator.getTextArea("");
-        editableTextArea = LayoutCreator.getTextArea("");
-        nonEditableTextArea2 = LayoutCreator.getTextArea("");
+        questionArea = GUIManager.getQuestion(new Color(80, 67, 123));
+        //questionArea.putClientProperty("JComponent.roundRect", true);
+        nonEditableTextArea1 = GUIManager.gSyntaxTextArea();
+        editableTextArea = GUIManager.gSyntaxTextArea();
+        nonEditableTextArea2 = GUIManager.gSyntaxTextArea();
 
-
+        add(Box.createRigidArea(new Dimension(0,20)));
         add(questionArea); 
         add(Box.createRigidArea(new Dimension(0, 10)));
 
@@ -46,6 +60,7 @@ class QuestionArea extends JPanel {
         add(nonEditableTextArea2);
 
         add(Box.createRigidArea(new Dimension(0, 10)));
+    
     }
 
 
@@ -78,7 +93,7 @@ class QuestionArea extends JPanel {
         String str = "Fix the code below so that the output is: \n" + ApplicationManager.getCurrentQuestion().getExpectedOutput();
 
         questionArea.setText(str);
-        editableTextArea.setBackground(new Color(30, 70, 110));
+        editableTextArea.setBackground(new Color(69, 76, 90));
         editableTextArea.setEditable(true);
 
         add(ApplicationManager.getConsolePart());

@@ -12,27 +12,34 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
-public class ButtonArea extends JPanel {
+import com.hacktheborder.custom.classes.RoundedComponent;
+import com.hacktheborder.custom.classes.RoundedJPanel;
+import com.hacktheborder.managers.ApplicationManager;
+import com.hacktheborder.managers.GUIManager;
+import com.hacktheborder.managers.ApplicationManager.QuestionAreaManager;
+
+public class MultipleChoicePanel extends RoundedJPanel {
+    private final String[] OPTIONS = new String[] {"Compile Time Error", "Runtime Error", "Logic Error", "Vulnerability"};
     private JToggleButton[] buttons;
-    private final String[] OPTIONS;
     private ButtonGroup group;
     private JButton submitButton;
+    private int wrongAttempts;
 
 
     
-    public ButtonArea() {
+    public MultipleChoicePanel() {
 
-
+        super(35, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR);
+        //setBackground(ComponentGUIManager.backColor3);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        setPreferredSize(new Dimension(600, 400));
+        setPreferredSize(new Dimension(800, 350));
         setMaximumSize(getPreferredSize());
         setMinimumSize(getPreferredSize());
-        setBackground(new Color(77, 88, 101));
-        setBackground(Color.BLUE);
+        wrongAttempts = 0;
+
+        //setBackground(ComponentGUIManager.backColor3);
 
 
-
-        OPTIONS = new String[] {"Compile Time Error", "Runtime Error", "Logic Error", "Vulnerability"};
         buttons = new JToggleButton[4];
         group = new ButtonGroup();
  
@@ -40,6 +47,8 @@ public class ButtonArea extends JPanel {
         submitButton = new JButton("Submit") {{
             setPreferredSize(new Dimension(500, 50));
             setAlignmentX(Component.CENTER_ALIGNMENT);
+            setBackground(new Color(232, 188, 185));
+            setForeground(Color.BLACK);
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             addActionListener(e -> {
@@ -54,17 +63,30 @@ public class ButtonArea extends JPanel {
 
     public void validateQuestion(){
         if(isResponseCorrect()) {
-            ApplicationManager.setSecSection();
+            group.clearSelection();
+            QuestionAreaManager.setSecSection();
         } else {
+            wrongAttempts++;
             shuffleButtons();
             group.clearSelection();
         }
     }
 
 
+    public int getNumWrongAttempts() {
+        int wrongAttempts = this.wrongAttempts;
+        resetNumWrongAttempts();
+        return wrongAttempts;
+    }
+
+    public void resetNumWrongAttempts() {
+        this.wrongAttempts = 0;
+    }
+
+
     private void addButtonsToArray() {
         for (int i = 0; i < OPTIONS.length; i++) { 
-            buttons[i] = LayoutCreator.getToggleButton(OPTIONS[i]);
+            buttons[i] = GUIManager.getToggleButton(OPTIONS[i]);
             group.add(buttons[i]);
         }
     }

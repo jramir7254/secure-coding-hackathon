@@ -1,9 +1,10 @@
-package com.hacktheborder;
+package com.hacktheborder.utilities;
 
 public class Team {
     private String teamName;
     private int numMembers;
     private int epccIdNumber;
+    private int personalBestTeamScore;
     private int teamScore;
 
     public Team() {
@@ -14,7 +15,12 @@ public class Team {
         this.teamName = teamName;
         this.numMembers = numMembers;
         this.epccIdNumber = epccIdNumber;
-        this.teamScore = teamScore;
+        this.personalBestTeamScore = teamScore;
+        this.teamScore = 0;
+    }
+
+    public void setUpdateTeamScore(int newScore) {
+        this.teamScore += newScore;
     }
 
     public String getTeamName() {

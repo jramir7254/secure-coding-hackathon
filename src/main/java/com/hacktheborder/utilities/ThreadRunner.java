@@ -1,4 +1,4 @@
-package com.hacktheborder;
+package com.hacktheborder.utilities;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,7 +17,7 @@ public class ThreadRunner extends Thread {
             windowsFile = new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\");
             processBuilder = new ProcessBuilder("java", "-cp", ".", "Test.java");
             processBuilder.redirectErrorStream(true);
-            processBuilder.directory(appleFile);
+            processBuilder.directory(windowsFile);
         } catch (Exception e) {
 
         }
@@ -25,7 +25,7 @@ public class ThreadRunner extends Thread {
 
 
     public String getOutput() {
-        System.out.println("Getting output: " + output);
+
         return output;
     }
 
@@ -35,13 +35,13 @@ public class ThreadRunner extends Thread {
         try {
             process = processBuilder.start();
    
-            if (!process.waitFor(5, java.util.concurrent.TimeUnit.SECONDS)) {
+            if (!process.waitFor(3, java.util.concurrent.TimeUnit.SECONDS)) {
                 // Timeout exceeded: terminate the process and interrupt this thread
                 process.destroy();
                 this.interrupt();
                 System.out.println("Process took too long and was terminated.\n");
             } else {
-                System.out.println("Process completed successfully.\n");
+
             }
             
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -76,8 +76,7 @@ public class ThreadRunner extends Thread {
             } catch (IOException e) {
                 System.err.println("Failed to close streams: " + e.getMessage());
             }
-            
-            System.out.println("ThreadRunner has finished execution.\n");
+  
         }
     }
 }

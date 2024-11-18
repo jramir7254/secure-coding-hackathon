@@ -1,4 +1,4 @@
-package com.hacktheborder;
+package com.hacktheborder.utilities;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -48,7 +48,7 @@ public class QuestionGenerator {
             }
             scan.close();
 
-            try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\Question.ser")))) {
+            try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("secure-coding\\src\\main\\resources\\Question.ser")))) {
                 for(Question q : questions) {
                     oos.writeObject(q);
                 }

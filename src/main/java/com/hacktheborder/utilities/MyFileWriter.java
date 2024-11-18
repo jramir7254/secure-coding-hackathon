@@ -1,7 +1,10 @@
-package com.hacktheborder;
+package com.hacktheborder.utilities;
 
 import java.io.File;
 import java.io.FileWriter;
+
+import com.hacktheborder.managers.ApplicationManager;
+import com.hacktheborder.managers.ApplicationManager.QuestionAreaManager;
 
 public class MyFileWriter {
     private File windowsFile, appleFile;
@@ -12,9 +15,9 @@ public class MyFileWriter {
     }
 
     public void writeToFile() {
-        String output = ApplicationManager.getWriteOutputText();
+        String output = QuestionAreaManager.getWriteOutputText();
 
-        try(FileWriter fileWriter = new FileWriter(appleFile)) {
+        try(FileWriter fileWriter = new FileWriter(windowsFile)) {
             fileWriter.append(output);
         } catch (Exception e) {
 

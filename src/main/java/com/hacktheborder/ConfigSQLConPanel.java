@@ -7,19 +7,23 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ConfigureSQLConnectorPanel extends JPanel {
+import com.hacktheborder.managers.ApplicationManager;
+import com.hacktheborder.managers.GUIManager;
+import com.hacktheborder.managers.ApplicationManager.SQLManager;
+
+public class ConfigSQLConPanel extends JPanel {
     private JTextField ipAddressTextField;
     private JButton submitIPAddressButton;
 
 
-    public ConfigureSQLConnectorPanel() {
+    public ConfigSQLConPanel() {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        setPreferredSize(new Dimension(800, 800));
+        setPreferredSize(new Dimension(GUIManager.PANEL_WIDTH, GUIManager.PANEL_WIDTH));
         setMaximumSize(getPreferredSize());
         setMinimumSize(getPreferredSize());
 
 
-        ipAddressTextField = new JTextField("Submit");
+        ipAddressTextField = new JTextField();
         submitIPAddressButton = new JButton() {{
             addActionListener(e -> {
                 submitIPAddress();
@@ -27,8 +31,8 @@ public class ConfigureSQLConnectorPanel extends JPanel {
         }};
     }
 
-    private void submitIPAddress() {
-        ApplicationManager.retrySQLConnection(ipAddressTextField.getText());
-    }
 
+    private void submitIPAddress() {
+        SQLManager.retrySQLConnection(ipAddressTextField.getText());
+    }
 }
