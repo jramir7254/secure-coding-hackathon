@@ -33,7 +33,7 @@ public class MultipleChoicePanel extends RoundedJPanel {
         super(35, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR);
         //setBackground(ComponentGUIManager.backColor3);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        setPreferredSize(new Dimension(800, 350));
+        setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.5), 350));
         setMaximumSize(getPreferredSize());
         setMinimumSize(getPreferredSize());
         wrongAttempts = 0;
@@ -46,7 +46,7 @@ public class MultipleChoicePanel extends RoundedJPanel {
  
 
         submitButton = new JButton("Submit") {{
-            setPreferredSize(new Dimension(500, 50));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.5), 50));
             setAlignmentX(Component.CENTER_ALIGNMENT);
             setBackground(new Color(232, 188, 185));
             setForeground(Color.BLACK);

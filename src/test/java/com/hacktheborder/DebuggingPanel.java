@@ -29,7 +29,7 @@ public class DebuggingPanel extends JPanel {
 
     public DebuggingPanel() {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(800, 350));
+        setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), 350));
         setMinimumSize(getPreferredSize());
         setMaximumSize(getPreferredSize());
         setBackground(new Color(77, 88, 101));

@@ -34,7 +34,7 @@ public class SQLConnector {
             String[] propertyValues = getProperties();
             user = propertyValues[0];
             password = propertyValues[1];
-            System.out.println("Connected to the database!");
+
         
         } catch (Exception e) {
             

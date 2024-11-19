@@ -62,7 +62,7 @@ public class GUIManager {
     public static RoundedJTextArea getQuestion(Color color) {
         return new RoundedJTextArea(35, color, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR) {
             {
-                setPreferredSize(new Dimension(800, 100));
+                setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), 100));
                 setMaximumSize(getPreferredSize());
                 setMinimumSize(getPreferredSize());
                 setLineWrap(true);
@@ -90,7 +90,7 @@ public class GUIManager {
                 setWrapStyleWord(true);
                 setBackground(new Color(35, 39, 46));
                 setCaretColor(Color.WHITE);
-                setPreferredSize(new Dimension(800, 150));
+                setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), 150));
                 setMaximumSize(getPreferredSize());
                 setMinimumSize(getPreferredSize());
             }
@@ -125,7 +125,7 @@ public class GUIManager {
             setSyntaxEditingStyle(RSyntaxTextArea.SYNTAX_STYLE_JAVA);
 
 
-            setPreferredSize(new Dimension(800, 125));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), 125));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setLineWrap(true);
@@ -159,7 +159,7 @@ public class GUIManager {
                 setPromptForeground(new Color(255, 255, 255, 122));
                 setBackground(COMPONENT_CHILD_BACKGROUND_COLOR);
                 setAlignmentX(Component.CENTER_ALIGNMENT);
-                setPreferredSize(new Dimension(600, 50));
+                setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.65), 50));
                 setMaximumSize(getPreferredSize());
                 setMinimumSize(getPreferredSize());
             }
@@ -197,7 +197,7 @@ public class GUIManager {
             setAlignmentX(Component.CENTER_ALIGNMENT);
             setForeground(Color.BLACK);
             putClientProperty("JComponent.roundRect", true);
-            setPreferredSize(new Dimension(BUTTON_WIDTH, 50));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.5), 50));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             
