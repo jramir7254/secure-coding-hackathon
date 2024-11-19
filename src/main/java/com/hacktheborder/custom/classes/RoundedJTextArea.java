@@ -1,48 +1,62 @@
 package com.hacktheborder.custom.classes;
-import java.awt.*;
 
-import javax.swing.BorderFactory;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+
 import javax.swing.JTextArea;
 
-import com.hacktheborder.managers.GUIManager;
 
-public class RoundedJTextArea extends RoundedComponent {
-    private JTextArea jTextArea;
 
-    public void setThis() {
-        setLayout(new BorderLayout());
-        jTextArea = new JTextArea();
-        jTextArea.setOpaque(false); // Ensures transparency for custom painting
-        jTextArea.setLineWrap(true);
-        jTextArea.setWrapStyleWord(true);
-        jTextArea.setFocusable(false);
-        jTextArea.setCaretColor(Color.WHITE);
-        jTextArea.setEditable(false);
-        jTextArea.setBorder(BorderFactory.createEmptyBorder(25, 25, 10, 10));
-        jTextArea.setFont(new Font("Calibri", Font.BOLD, 20));
-        add(jTextArea, BorderLayout.CENTER);
+public class RoundedJTextArea extends JTextArea {
+    private int radius;
+    private Color componentColor;
+    private Color parentColor;
+
+
+
+    public RoundedJTextArea(int r, Color c, Color p) {
+        this.radius = r;
+        this.componentColor = c;
+        this.parentColor = p;
+        setOpaque(false);
     }
 
 
-    public RoundedJTextArea(int radius, Color color) {
-        super(radius, color);
-        setThis();
+
+
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g.create();
+
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2.setColor(parentColor); 
+        g2.fillRect(0, 0, getWidth(), getHeight());
+        // Draw the rounded background
+
+        g2.setColor(componentColor);
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
+ 
+        g2.dispose();
+        super.paintComponent(g);
     }
 
 
-    public RoundedJTextArea(int radius, Color color, Color parent) {
-        super(radius, color, parent);
-        setThis();
-    }
 
 
-    public void setText(String newText) {
-        jTextArea.setText(newText);
-        repaint();
-    }
+    @Override
+    protected void paintBorder(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+   
+        // Draw the rounded border
+        g2.setColor(componentColor);
+        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius);
 
-    public JTextArea getRoundedJTextArea() {
-        return this.jTextArea;
+        g2.dispose();
     }
 }

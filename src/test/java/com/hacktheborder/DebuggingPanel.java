@@ -29,7 +29,7 @@ public class DebuggingPanel extends JPanel {
 
     public DebuggingPanel() {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(((int)(GUIManager.PANEL_WIDTH * 0.8)), 350));
+        setPreferredSize(new Dimension(800, 350));
         setMinimumSize(getPreferredSize());
         setMaximumSize(getPreferredSize());
         setBackground(new Color(77, 88, 101));
@@ -57,7 +57,7 @@ public class DebuggingPanel extends JPanel {
 
 
         runButton = new JButton("Run") {{
-            setPreferredSize(new Dimension(((int)(GUIManager.PANEL_WIDTH * 0.8)), 50));
+            setPreferredSize(new Dimension(100, 50));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             addActionListener(e -> {

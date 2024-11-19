@@ -1,4 +1,4 @@
-package com.hacktheborder.custom.classes;
+package com.hacktheborder.custom;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
+
 
 public abstract class RoundedComponent extends JComponent {
     private int cornerRadius;

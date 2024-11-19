@@ -55,14 +55,14 @@ public class GUIManager {
     public static final int BUTTON_HEIGHT = (int)(SCREEN_HEIGHT / 1.2);
 
 
-
+    
 
 
 
     public static RoundedJTextArea getQuestion(Color color) {
         return new RoundedJTextArea(35, color, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR) {
             {
-                setPreferredSize(new Dimension(((int)(PANEL_WIDTH * 0.8)), 100));
+                setPreferredSize(new Dimension(800, 100));
                 setMaximumSize(getPreferredSize());
                 setMinimumSize(getPreferredSize());
                 setLineWrap(true);
@@ -125,7 +125,7 @@ public class GUIManager {
             setSyntaxEditingStyle(RSyntaxTextArea.SYNTAX_STYLE_JAVA);
 
 
-            setPreferredSize(new Dimension(((int)(PANEL_WIDTH * 0.8)), 125));
+            setPreferredSize(new Dimension(800, 125));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setLineWrap(true);

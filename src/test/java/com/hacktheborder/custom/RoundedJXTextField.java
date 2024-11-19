@@ -1,4 +1,4 @@
-package com.hacktheborder.custom.classes;
+package com.hacktheborder.custom;
 
 import java.awt.Color;
 import java.awt.Graphics;

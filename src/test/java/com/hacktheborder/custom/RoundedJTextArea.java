@@ -1,24 +1,22 @@
-package com.hacktheborder.custom.classes;
+package com.hacktheborder.custom;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-import org.jdesktop.swingx.JXTextField;
+import javax.swing.JTextArea;
 
 
-public class RoundedJXTextField extends JXTextField {
 
-    private Color parentColor;
+public class RoundedJTextArea extends JTextArea {
     private int radius;
     private Color componentColor;
-    
+    private Color parentColor;
 
 
-    
 
-    public RoundedJXTextField(int r, Color c, Color p) {
+    public RoundedJTextArea(int r, Color c, Color p) {
         this.radius = r;
         this.componentColor = c;
         this.parentColor = p;
@@ -27,7 +25,7 @@ public class RoundedJXTextField extends JXTextField {
 
 
 
-    
+
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -54,6 +52,7 @@ public class RoundedJXTextField extends JXTextField {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+   
         // Draw the rounded border
         g2.setColor(componentColor);
         g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius);
