@@ -1,4 +1,4 @@
-package com.hacktheborder;
+package com.hacktheborder.frame;
 
 import javax.swing.*;
 
@@ -14,12 +14,12 @@ import java.awt.event.ActionListener;
  
 
 public class HeaderPanel extends JPanel {
-    private Timer timer;
-    private JLabel timerTextJLabel;
+    private Timer questiontimer, totalTimer;
+    private JLabel questionTimerTextJLabel, totalTimerTextJLabel;
     private JLabel currentTeamNameJLabel;
     private JLabel currentTeamScoreJLabel;
     private JPanel jLabelContainerPanel;
-    private int totalTimeInSeconds;
+    private int totalTimeInSeconds, questionTimeInSeconds;
 
 
     public HeaderPanel() {
@@ -32,15 +32,18 @@ public class HeaderPanel extends JPanel {
 
 
         totalTimeInSeconds = 0; 
+        questionTimeInSeconds = 0;
 
 
         // Initializes Score, Team Name, and Time JLabels
-        timerTextJLabel = new JLabel(formatTime(totalTimeInSeconds));
-        timerTextJLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+        questionTimerTextJLabel = new JLabel(formatTime(totalTimeInSeconds));
+        questionTimerTextJLabel.setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_18));
+        totalTimerTextJLabel = new JLabel(formatTime(questionTimeInSeconds));
+        totalTimerTextJLabel.setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_18));
         currentTeamNameJLabel = new JLabel();
-        currentTeamNameJLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+        currentTeamNameJLabel.setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_18));
         currentTeamScoreJLabel = new JLabel();
-        currentTeamScoreJLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+        currentTeamScoreJLabel.setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_18));
  
 
         // Container Panel that holds JLabels up top
@@ -53,9 +56,17 @@ public class HeaderPanel extends JPanel {
         
 
         // Timer object that updates the time in JLabel
-        timer = new Timer(1000, new ActionListener() {
+        questiontimer = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                timerTextJLabel.setText("Total Time: " + formatTime(totalTimeInSeconds));
+                questionTimerTextJLabel.setText("Time on Question: " + formatTime(questionTimeInSeconds));
+                questionTimeInSeconds++;
+            }
+        });
+
+
+        totalTimer = new Timer(1000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                totalTimerTextJLabel.setText("Total Time: " + formatTime(totalTimeInSeconds));
                 totalTimeInSeconds++;
             }
         });
@@ -90,37 +101,78 @@ public class HeaderPanel extends JPanel {
         currentTeamScoreJLabel.setText("Score: " + currentTeam.getTeamScore());
         jLabelContainerPanel.add(currentTeamScoreJLabel);
         jLabelContainerPanel.add(currentTeamNameJLabel);
-        jLabelContainerPanel.add(timerTextJLabel);
+        jLabelContainerPanel.add(questionTimerTextJLabel);
+        jLabelContainerPanel.add(totalTimerTextJLabel);
+    }
+
+
+    public void updateScore() {
+        Team currentTeam = TeamManager.getCurrentTeam();
+        currentTeamScoreJLabel.setText("Score: " + currentTeam.getTeamScore());
     }
 
 
     public int getTotalTimeSeconds() {
         int totalTimeInSecondsForQuestion  = totalTimeInSeconds;
-        resetTimer();
+        return totalTimeInSecondsForQuestion;
+    }
+
+
+    public int getQuestionTimeSeconds() {
+        int totalTimeInSecondsForQuestion  = questionTimeInSeconds;
+        resetQuestionTimer();
         return totalTimeInSecondsForQuestion;
     }
 
 
     public void resetAll() {
         totalTimeInSeconds = 0;
-        timerTextJLabel.setText("Total Time: " + formatTime(totalTimeInSeconds));
+        questionTimerTextJLabel.setText("Total Time: " + formatTime(totalTimeInSeconds));
         currentTeamNameJLabel.setText("");
         currentTeamScoreJLabel.setText("");
     }
 
 
-    public void resetTimer() {
+    public void resetTotalTimer() {
         totalTimeInSeconds = 0;
     }
 
-
-    public void startTimer() {
-        timer.start();
-
+    public void resetQuestionTimer() {
+        questionTimeInSeconds = 0;
     }
 
-    public void stopTimer() {
-        timer.stop();
+    public void resetAllTimers() {
+        resetTotalTimer();
+        resetQuestionTimer();
+    }
+
+    public void startAllTimers() {
+        startTotalTimer();
+        startQuestionTimer();
+    }
+
+    public void stopAllTimers() {
+        stopTotalTimer();
+        stopQuestionTimer();
+    }
+
+
+
+    public void startTotalTimer() {
+        totalTimer.start();
+    }
+
+    public void stopTotalTimer() {
+        totalTimer.stop();
+    }
+
+
+    public void startQuestionTimer() {
+        questiontimer.start();
+    }
+
+    public void stopQuestionTimer() {
+        questiontimer.stop();
     }
 
 }

@@ -9,13 +9,11 @@ public class Test {
         boolean isAdmin;
         
 STOP
-
         name = Bob
 
         age = "21";
 
         isadmin = no:
-
 STOP
         System.out.println("Hello, my name is " + name + "!");
         System.out.println("I am " + age + " years old.");
@@ -153,4 +151,436 @@ STOP
             System.out.println("Result is : " + divide(a, b));
     }
 }
+QUESTION_TYPE: Compile Time Error
+EXPECTED_OUTPUT: The total cost of your order is: $40.96
 STOP
+public class Test {
+    public static void main(String[] args) {
+        double coffeePrice = 4.50, pastryPrice = 7.99;
+        int coffeeQuantity = 2, pastryQuantity = 4;
+
+        double totalCost = calculateTotalCost(coffeePrice, coffeeQuantity, pastryPrice, pastryQuantity);
+        printTotalCost(totalCost);
+    }
+STOP
+
+    public static double calculateTotalCost(double coffeePrice, int coffeeQuantity, double pastryPrice, pastryQuantity) { 
+        double coffeeCost = coffeePrice * coffeQuantity
+        double pastryCost = pastryprice * pastryQuantity; 
+        double total = coffeeCost + pastryCost;
+        return total;
+    }
+STOP
+
+    public static void printTotalCost(double totalCost) {
+        if (totalCost > 0) 
+            System.out.println("The total cost of your order is: $" + totalCost);
+        else 
+            System.out.println("Error: Unable to calculate the total cost.");
+    }
+} 
+STOP
+QUESTION_TYPE: Compile Time Error
+EXPECTED_OUTPUT: The total cost of your booking is: $1807.5
+EXPECTED_OUTPUT: Thank you for booking with us!
+public class Test {
+    public static void main(String[] args) {
+        double roomPrice = 120.50;
+        int rooms = 3, nights = 5;
+        double totalCost = calculateTotalCost(roomPrice, nights, rooms);
+        printBookingSummary(totalCost);
+ }
+STOP
+    public static double calculateTotalCost(double roomPrice, int nights, int rooms) {
+        int costPerRoom = roomPrice * nights; 
+        double total = costPerRoom * room; 
+        Return total;
+    }
+STOP
+
+    public static void printBookingSummary(double totalCost) {
+        System.out.println("The total cost of your booking is: $" + totalCost);
+        System.out.println("Thank you for booking with us!");
+    }
+}
+
+STOP
+QUESTION_TYPE: Compile Time Error
+EXPECTED_OUTPUT: race car
+EXPECTED_OUTPUT: 
+EXPECTED_OUTPUT: Reversal complete. Thank you for using the program!
+EXPECTED_OUTPUT: Goodbye!
+public class BackwardsWord {
+    public static void main(String[] args) {
+        System.out.println("Please provide a word:");
+        String word = "race car".toLowerCase();
+        int index = word.length() - 1;
+
+        for (int index = word.length() - 1; index >= 0; index--) {
+STOP
+            char c = word.charAt(i);
+            System.out.print(c)); 
+STOP
+        }
+        System.out.println();
+        System.out.println("Reversal complete. Thank you for using the program!");
+        System.out.println("Goodbye!");
+    }
+}
+
+STOP
+QUESTION_TYPE: Compile Time Error
+EXPECTED_OUTPUT: Your age is 37
+EXPECTED_OUTPUT: Expected age calculation result: 37
+public class UserAge {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("What year were you born?");
+        int birthYear = 1987
+        validateResults(calculateAge(birthYear););
+    } 
+
+STOP
+
+    public static void calculateAge(int birthYear { 
+        int age = 2024 - birthYear 
+        System.out.println("Your age is " + Age); 
+        return yearsOld;
+    } 
+
+STOP
+
+    public static void validateResults(int birthYear) {
+        int expectedAge = 2024 - birthYear;
+        System.out.println("Expected age calculation result: " + expectedAge);
+    }
+
+STOP
+QUESTION_TYPE: Compile Time Error
+EXPECTED_OUTPUT: Your age is 37
+EXPECTED_OUTPUT: Expected age calculation result: 37
+public class UserAge {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("What year were you born?");
+        int birthYear = 1987
+        validateResults(calculateAge(birthYear););
+    } 
+
+STOP
+
+    public static void calculateAge(int birthYear { 
+        int age = 2024 - birthYear 
+        System.out.println("Your age is " + Age); 
+        return yearsOld;
+    } 
+
+STOP
+
+    public static void validateResults(int birthYear) {
+        int expectedAge = 2024 - birthYear;
+        System.out.println("Expected age calculation result: " + expectedAge);
+    }
+
+STOP
+QUESTION_TYPE: Compile Time Error
+EXPECTED_OUTPUT: Summary: Blue is a popular choice!
+EXPECTED_OUTPUT: Summary: Expected Red is vibrant and bold!
+EXPECTED_OUTPUT: Summary: That's a unique choice!
+public class FavoriteColor {
+    public static void main(String[] args) {
+        printSummary(checkColor("blue"));
+        printSummary(checkColor("red"));
+        printSummary(checkColor("barf yellow"));
+    }
+STOP
+    public static String checkColor(String color { 
+        if (color.equals("blue")
+            return "Blue is a popular choice!")
+        else if (color.Equals("red"))
+            return "Red is vibrant and bold!";
+        else 
+            retorn 'That's a unique choice!';
+     }
+STOP
+
+    public static void printSummary(String summary) {
+        System.out.println("Summary: " + summary);
+    }
+}
+STOP
+QUESTION_TYPE: Compile Time Error
+EXPECTED_OUTPUT: Summary: The weekly salary is: $257.556
+public class EmployeeSalaryCalculator {
+    public static void main(String[] args) {
+        double hoursWorked = 40.56;
+        double hourlyWage = 6.35;
+        printSalary(hoursWorked, hourlyWage);
+    }
+STOP
+
+    public static void printSalary(hoursWorked, hourlyWage) {
+        double salary = calculateSalary(hoursWorked, hourlyWage);
+        if(hoursWorked <= 0 || hourlyWage <= 0) {
+            System.out.println(Invalid input.); 
+        else
+            System.out.println("The weekly salary is: $" + Salary);
+    }
+STOP
+
+    public static void calculateSalary(double hoursWorked, double hourlyWage) {
+        double expectedSalary = hoursWorked * hourlyWage;
+        return expectedSalary;
+    }
+}
+STOP
+QUESTION_TYPE: Compile Time Error
+EXPECTED_OUTPUT: The initial total was: $105.0
+EXPECTED_OUTPUT: The final total is: $94.5
+public class SimpleShoppingCalculator {
+    public static void main(String[] args) {
+        double price = 100.0;
+        double discount = 10.0;
+        double tax = 5.0;
+        double intitialTotal = 105.00;
+    
+STOP
+        double discountAmt = price * discount \ 100;
+        int priceAfterDiscount = price - discountAmt;
+        double taxAmt = priceAfterDiscount * fax / 100;
+        total = priceAfterDiscount + taxAmt;
+        double new Total = priceAfterDiscount + taxAmt;
+STOP
+
+        System.out.println("The initial total was: $" + intitialTotal);
+        System.out.println("The final total is: $" + newTotal);
+    }
+}
+
+STOP
+QUESTION_TYPE: Runtime Error
+EXPECTED_OUTPUT: Average: 81.4
+EXPECTED_OUTPUT: Thank you for using the Average Calculator.
+
+
+public class AverageCalculator {
+    public static void main(String[] args) {
+        int[] numbers = {90, 82, 98, 64, 73};
+        int n = numbers.length;
+        double sum = 0;
+STOP
+
+        for (int i = 0; i <= n; i++) { 
+            sum += numbers[i];
+        }
+        double average = sum / n;
+STOP
+
+        System.out.println("Average: " + average);
+        System.out.println("Thank you for using the Average Calculator.");
+    }
+}
+
+STOP
+QUESTION_TYPE: Runtime Error
+EXPECTED_OUTPUT: The number is odd.
+EXPECTED_OUTPUT: 47
+EXPECTED_OUTPUT: Thank you for using EvenNumberChecker.
+
+
+public class EvenNumberChecker {
+    public static void main(String[] args) {
+
+        final int number = 7 * 5 + ((8-4) * 3);
+
+STOP
+        int result = number % 0;
+
+        if (result == 0) {
+            System.out.println("The number is even.");
+        } else {
+            System.out.println("The number is odd.");
+        }
+
+STOP
+        System.out.println(number);
+        System.out.println("Thank you for using EvenNumberChecker.");
+
+    }
+} 
+
+
+
+STOP
+QUESTION_TYPE: Runtime Error
+EXPECTED_OUTPUT: Total sum: 75
+
+public class SumArray {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5};
+        int sum = sumButBigger(numbers); 
+        displayResult(sum);
+    }
+
+STOP
+    public static int sumButBigger(int[] numbers) {
+        int sum = 0;
+        for (int i = 0; i <= numbers.length; i++) { 
+            sum += numbers[i];
+        }
+        return sum * 5;
+    }
+STOP
+
+    public static void displayResult(int result) {
+        System.out.println("Total sum: " + result);
+    }
+} 
+
+STOP
+QUESTION_TYPE: Runtime Error
+EXPECTED_OUTPUT: Price after applying discount: $70.0
+public class DiscountCalculator {
+    public static void main(String[] args) {
+        double originalPrice = 100;
+        double finalPrice = calculateDiscount(originalPrice);
+        printFinalPrice(finalPrice);
+    }
+
+STOP
+    public static double calculateDiscount(double price) {
+        if(price == 70) {
+            return calculateDiscount(price);
+        } else {
+            return calculateDiscount(price - 10); 
+        }
+    }
+
+STOP
+
+    public static void printFinalPrice(double price) {
+
+        System.out.println("Price after applying discount: $" + price);
+    }
+}
+STOP
+QUESTION_TYPE: Runtime Error
+EXPECTED_OUTPUT: Last Name: Doe
+public class NameSubstring {
+    public static void main(String[] args) {
+        String name = "John Doe";
+        String lastName = getLastName(name, 5);
+        printLastName(lastName);
+    }
+STOP
+
+    public static String getLastName(String name, int start) {
+        String returnedLastName = name.substring(start, 9);
+        return returnedLastName;
+    }
+
+STOP
+    public static void printLastName(String lastName) {
+        System.out.println("Last Name: " + lastName);
+    }
+} 
+STOP
+QUESTION_TYPE: Runtime Error
+EXPECTED_OUTPUT: Items counted: 4
+public class ItemCounter {
+    public static void main(String[] args) {
+        String[] items = {"bread", "milk", "A Joe Dirt DVD", "Treasure from a Fish Tank"};
+        int itemCount = countItems(items);
+        printItemCount(itemCount);
+    }
+STOP
+    public static int countItems(String[] items) {
+        items = null;
+        int count = 0;
+        for (int i = 0; i < items.length; i++) 
+            count++;
+        return count;
+    }
+STOP
+    public static void printItemCount(int count) {
+        System.out.println("Items counted: " + count);
+    }
+}
+STOP
+QUESTION_TYPE: Logic Error
+EXPECTED_OUTPUT: Income: 120000.0, Tax: 30000.0
+public class TaxCalculator {
+    public static void main(String[] args) {
+        double tax = calculateTax(120_000);
+        printTaxDetails(120_000, tax);
+    }
+
+    public static double calculateTax(double income) {
+        double taxRate;
+STOP
+
+        if (income > 40_000) {
+            taxRate = 0.25;
+        } 
+        taxRate = 0.15;
+
+        double tax = income * taxRate; //taxRate should be 0.25
+STOP
+        return tax;
+    }
+
+    public static void printTaxDetails(double income, double tax) {
+        System.out.println("Income: " + income + ", Tax: " + tax);
+    }
+}
+STOP
+QUESTION_TYPE: Logic Error
+EXPECTED_OUTPUT: Number of vowels: 8
+public class VowelCounter {
+    public static void main(String[] args) {
+        String input = "Hello World!";
+        int vowelCount = countVowels(input);
+        printNumVowels(vowelCount);
+    }
+STOP
+    public static int countVowels(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length() - 1; i++) { 
+            char c = str.charAt(i);
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') 
+                count++;
+STOP
+        } return count;
+    }
+
+    public static void displayMessage(int numVowels) {
+        System.out.println("Number of vowels: " + numVowels);
+    }
+} 
+STOP
+public class PasswordValidator {
+    public static void main(String[] args) {
+        String password = "password123";
+        boolean isValid = validatePassword(password);
+        System.out.println("Password validation: " + isValid);
+    }
+STOP
+    public static boolean validatePassword(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isDigit(password.charAt(i))) {
+                System.out.println("Password contains a number.");
+            }
+        }
+        return false; // Always returns false regardless of condition
+    }
+STOP
+    public static void printValidationStatus(boolean status) {
+        if (status) {
+            System.out.println("Password is valid.");
+        } else {
+            System.out.println("Password is invalid.");
+        }
+    }
+} 
+
+

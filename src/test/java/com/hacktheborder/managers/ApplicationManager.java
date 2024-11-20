@@ -3,12 +3,18 @@ package com.hacktheborder.managers;
 import java.awt.BorderLayout;
 
 import com.hacktheborder.*;
+import com.hacktheborder.frame.EndGamePanel;
+import com.hacktheborder.frame.HeaderPanel;
+import com.hacktheborder.frame.InfoPanel;
+import com.hacktheborder.frame.LeaderBoardPanel;
+import com.hacktheborder.frame.MainFrame;
+import com.hacktheborder.frame.MainMenuPanel;
+import com.hacktheborder.frame.QuestionContainerPanel;
+import com.hacktheborder.panels.DebuggingPanel;
+import com.hacktheborder.panels.MultipleChoicePanel;
 
 import javax.swing.JPanel;
 
-
-import com.hacktheborder.utilities.InfoPanel;
-import com.hacktheborder.utilities.LeaderBoardPanel;
 import com.hacktheborder.utilities.Question;
 import com.hacktheborder.utilities.QuestionHolder;
 import com.hacktheborder.utilities.QuizScoreCalculator;

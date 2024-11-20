@@ -18,26 +18,48 @@ public class SQLConnector {
     private ResultSet resultSet;
     private PreparedStatement statement;
 
-    private String user, password, url;
+    private String user, password;
+    private static String databaseURL;
 
-    //String url = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
-    //String url = "jdbc:mysql://hacktheborder.ddns.net:3306/secure_coding_database";
-    //String url = "jdbc:mysql://10.37.52.227:3306/secure_coding_database";
+
+    public static void setURL(String ipAddr) {
+        databaseURL = "jdbc:mysql://"+ ipAddr + ":3306/secure_coding_database";
+        System.out.println(databaseURL);
+    }
+
+
+
+    public static void trySQLConnection() throws SQLException {
+        new SQLConnector().testConnection();
+    }
+    
+
+
+    public void testConnection() throws SQLException {
+        connection = DriverManager.getConnection(databaseURL,  user, password);
+        connection.close();
+    }
    
 
 
     public SQLConnector() {
-        url = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
-
+        //url = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String[] propertyValues = getProperties();
             user = propertyValues[0];
-            password = propertyValues[1];
-            System.out.println("Connected to the database!");
-        
+            password = propertyValues[1];  
         } catch (Exception e) {
             
+        }
+    }
+
+    public void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
@@ -45,7 +67,7 @@ public class SQLConnector {
 
     public void startConnection() {
         try {
-            connection = DriverManager.getConnection(url,  user, password);
+            connection = DriverManager.getConnection(databaseURL,  user, password);
         } catch (Exception e) {
             System.err.println("Connection error: " + e.getMessage());
         }

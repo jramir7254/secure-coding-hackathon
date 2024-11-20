@@ -1,4 +1,4 @@
-package com.hacktheborder;
+package com.hacktheborder.panels;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -22,6 +22,10 @@ public class MultipleChoicePanel extends RoundedJPanel {
     private ButtonGroup group;
     private JButton submitButton;
     private int wrongAttempts;
+    private final int THIS_PANEL_WIDTH = (int)(GUIManager.PANEL_WIDTH * 0.9); //0.85
+    private final int THIS_PANEL_HEIGHT = (int)(GUIManager.PANEL_HEIGHT * 0.4);
+    private final int THIS_BUTTON_WIDTH = (int)(GUIManager.PANEL_WIDTH * 0.1); //0.1
+
 
 
     
@@ -30,7 +34,7 @@ public class MultipleChoicePanel extends RoundedJPanel {
         super(35, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR);
         //setBackground(ComponentGUIManager.backColor3);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), (int)(GUIManager.PANEL_HEIGHT * 0.4)));
+        setPreferredSize(new Dimension(THIS_PANEL_WIDTH, (int)(GUIManager.PANEL_HEIGHT * 0.4)));
         setMaximumSize(getPreferredSize());
         setMinimumSize(getPreferredSize());
         wrongAttempts = 0;
@@ -91,6 +95,7 @@ public class MultipleChoicePanel extends RoundedJPanel {
 
 
     private void addButtonsToPanel() {
+        add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.02))));
         for(JToggleButton button : buttons) {
             add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.01))));
             add(button);

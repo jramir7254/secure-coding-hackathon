@@ -1,4 +1,4 @@
-package com.hacktheborder;
+package com.hacktheborder.frame;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -50,7 +50,13 @@ public class MainMenuPanel extends RoundedJPanel {
         ImageIcon resizedIcon = new ImageIcon(resizedImage);
 
 
-        teamNameTextField = GUIManager.getRoundedJXTextField(10, GUIManager.BUTTON_BACKGROUND_COLOR, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR);
+        teamNameTextField = GUIManager.getRoundedJXTextField
+        (
+            10, 
+            GUIManager.BUTTON_BACKGROUND_COLOR, 
+            GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR
+        );
+        
         teamNameTextField.setPrompt("Team Name");
         numMembersTextField = GUIManager.getRoundedJXTextField(10, GUIManager.BUTTON_BACKGROUND_COLOR, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR);
         numMembersTextField.setPrompt("Number of Members");
@@ -93,7 +99,6 @@ public class MainMenuPanel extends RoundedJPanel {
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             addActionListener(e -> {
-                System.out.println(SwingUtilities.isEventDispatchThread() ? true : false);
                 clearErrMessages(); 
                 createTeam();
                 validateLogin();
@@ -120,7 +125,7 @@ public class MainMenuPanel extends RoundedJPanel {
             setBackground(GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR);
             setBorder(null);
             setForeground(Color.RED);
-            setFont(new Font("Calibri", Font.PLAIN, 13));
+            setFont(new Font("Calibri", Font.PLAIN, GUIManager.FONT_SIZE_12));
         }};
     }
 

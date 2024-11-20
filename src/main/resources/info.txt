@@ -1,132 +1,143 @@
-How to Play: You will first answer a question And
-answer what type of error it is. The next section
-have to fix the highlighted code and run it so it
-mathces the output of the top text.
+  How to Play: You will first answer a question And answer what type of 
+  error it is. The next section
+  have to fix the highlighted code and run it so it
+  mathces the output of the top text.
 
-Score: Scoring is based on how many attempts on the
-multiple choice and how long it takes to solve one 
-problem. You are penalized for selecting multiple wrong
-answers and for taking too long. The faster you can
-answer a question correctly, the more points you get.
+  Score: Scoring is based on how many attempts on the
+  multiple choice and how long it takes to solve one 
+  problem. You are penalized for selecting multiple wrong
+  answers and for taking too long. The faster you can
+  answer a question correctly, the more points you get.
 
-Compile Time Errors: Errors detected by the compiler before 
-the program runs, usually due to syntax mistakes or type 
-mismatches in the code.
+  Compile Time Errors: Errors detected by the compiler before 
+  the program runs, usually due to syntax mistakes or type 
+  mismatches in the code.
 
-    1. Syntax Errors
-        - Missing semicolons (;), braces ({}), or 
-          parentheses (()).
+      1. Syntax Errors
+          - Missing semicolons (;), braces ({}), or 
+            parentheses (()).
 
-        - Example: System.out.println("Hello World"
+          - Example: System.out.println("Hello World"
 
-    2. Class Not Found
-        - Trying to use a class that isn’t imported or doesn’t 
-          exist in the project.
+      2. Class Not Found
+          - Trying to use a class that isn’t imported or doesn’t 
+            exist in the project.
 
-        - Example: Scanner scanner = new Scanner(System.in); 
-          without import java.util.Scanner;.
+          - Example: Scanner scanner = new Scanner(System.in); 
+            without import java.util.Scanner;.
 
-    3. Type Mismatch
-        -Assigning a value of one type to a variable of another 
-         incompatible type.
+      3. Type Mismatch
+          -Assigning a value of one type to a variable of another 
+          incompatible type.
 
-        -Example: int x = "Hello"; (String assigned to an int).
-How to Play: You will first answer a question And
-answer what type of error it is. The next section
-have to fix the highlighted code and run it so it
-mathces the output of the top text.
+          -Example: int x = "Hello"; (String assigned to an int).
 
-Score: Scoring is based on how many attempts on the
-multiple choice and how long it takes to solve one 
-problem. You are penalized for selecting multiple wrong
-answers and for taking too long. The faster you can
-answer a question correctly, the more points you get.
+  Runtime Error/Exceptions: Errors that occur while the program is executing, 
+  often caused by invalid operations like dividing by zero or accessing out-of-bound array elements.
 
-Compile Time Errors: Errors detected by the compiler before 
-the program runs, usually due to syntax mistakes or type 
-mismatches in the code.
+      1. NullPointerException
+          - Cause: Attempting to access or modify an object that is null.
 
-    1. Syntax Errors
-        - Missing semicolons (;), braces ({}), or 
-          parentheses (()).
+          - Example: myObject.method(); when myObject is null.
 
-        - Example: System.out.println("Hello World"
+      2. ArrayIndexOutOfBoundsException
+          - Cause: Trying to access an array element with an index outside its bounds.
 
-    2. Class Not Found
-        - Trying to use a class that isn’t imported or doesn’t 
-          exist in the project.
+          - Example: Accessing array[5] when array has only 5 elements (0-4).
 
-        - Example: Scanner scanner = new Scanner(System.in); 
-          without import java.util.Scanner;.
+      3. ArithmeticException
+          - Performing illegal arithmetic operations, such as dividing by zero.
 
-    3. Type Mismatch
-        -Assigning a value of one type to a variable of another 
-         incompatible type.
+          - Example: int result = 10 / 0;
 
-        -Example: int x = "Hello"; (String assigned to an int).
-How to Play: You will first answer a question And
-answer what type of error it is. The next section
-have to fix the highlighted code and run it so it
-mathces the output of the top text.
+  Logic Errors: Mistakes in the program's logic that lead to incorrect output or behavior, even 
+  though the code runs without crashes or syntax errors.
 
-Score: Scoring is based on how many attempts on the
-multiple choice and how long it takes to solve one 
-problem. You are penalized for selecting multiple wrong
-answers and for taking too long. The faster you can
-answer a question correctly, the more points you get.
+      1. Incorrect Operator Usage
+          - Using == instead of .equals() to compare strings or objects.
 
-Compile Time Errors: Errors detected by the compiler before 
-the program runs, usually due to syntax mistakes or type 
-mismatches in the code.
+          - Example: if (str == "hello") instead of if (str.equals("hello")).
 
-    1. Syntax Errors
-        - Missing semicolons (;), braces ({}), or 
-          parentheses (()).
+      2.Off-by-One Errors
+          - Common in loops, especially with for or while statements, leading to unintended bounds.
 
-        - Example: System.out.println("Hello World"
+          - Example: for (int i = 0; i <= arr.length; i++) results in an ArrayIndexOutOfBoundsException.
 
-    2. Class Not Found
-        - Trying to use a class that isn’t imported or doesn’t 
-          exist in the project.
+      3.Wrong Conditional Logic
+          - Using incorrect conditions in if, while, or for statements.
 
-        - Example: Scanner scanner = new Scanner(System.in); 
-          without import java.util.Scanner;.
+          - Example: if (x > 10 && x < 5) will always be false.
 
-    3. Type Mismatch
-        -Assigning a value of one type to a variable of another 
-         incompatible type.
+  Vulnerability: Weaknesses in a system or code that attackers can exploit to gain unauthorized 
+  access, cause disruptions, or extract sensitive information.+
 
-        -Example: int x = "Hello"; (String assigned to an int).
-How to Play: You will first answer a question And
-answer what type of error it is. The next section
-have to fix the highlighted code and run it so it
-mathces the output of the top text.
+      1.Logging or Printing Sensitive Information
+          -Outputting sensitive data, such as passwords, personal information, or API keys, to logs or console output.
 
-Score: Scoring is based on how many attempts on the
-multiple choice and how long it takes to solve one 
-problem. You are penalized for selecting multiple wrong
-answers and for taking too long. The faster you can
-answer a question correctly, the more points you get.
+          -Example: System.out.println("Password: " + password);
 
-Compile Time Errors: Errors detected by the compiler before 
-the program runs, usually due to syntax mistakes or type 
-mismatches in the code.
+      2. SQL Injection
+          -Using unparameterized SQL queries, which can allow attackers to inject malicious SQL code.
 
-    1. Syntax Errors
-        - Missing semicolons (;), braces ({}), or 
-          parentheses (()).
+          -Example: String query = "SELECT * FROM users WHERE username = '" + userInput + "'";
 
-        - Example: System.out.println("Hello World"
+      3. Hardcoding Sensitive Data
+          -Storing sensitive information (passwords, API keys) directly in source code.
 
-    2. Class Not Found
-        - Trying to use a class that isn’t imported or doesn’t 
-          exist in the project.
+          -Example: String apiKey = "API_SECRET_KEY";
 
-        - Example: Scanner scanner = new Scanner(System.in); 
-          without import java.util.Scanner;.
 
-    3. Type Mismatch
-        -Assigning a value of one type to a variable of another 
-         incompatible type.
+How to Play:
+Step 1: Answer a question and identify the type of error it describes.
+Step 2: Fix the highlighted code and run it to match the expected output shown in the problem description.
+Scoring:
+Your score is based on:
+Number of Attempts: Wrong answers reduce your score.
+Time Taken: The faster you solve a problem, the more points you earn.
+Be cautious! Selecting multiple wrong answers or taking too long will result in penalties. Accuracy and speed are key.
 
-        -Example: int x = "Hello"; (String assigned to an int).
+Types of Errors:
+1. Compile-Time Errors
+Errors detected by the compiler before the program runs. These are typically due to syntax mistakes or type mismatches.
+
+1.1 Syntax Errors
+
+Cause: Missing semicolons, braces, or parentheses.
+Example:
+java
+Copy code
+System.out.println("Hello World"
+1.2 Class Not Found
+
+Cause: Attempting to use a class that hasn’t been imported or doesn’t exist in the project.
+Example:
+java
+Copy code
+Scanner scanner = new Scanner(System.in); 
+// Missing: import java.util.Scanner;
+1.3 Type Mismatch
+
+Cause: Assigning a value of one type to a variable of another incompatible type.
+Example:
+java
+Copy code
+int x = "Hello"; // String assigned to an int.
+2. Runtime Errors/Exceptions
+Errors that occur while the program is running, often due to invalid operations like dividing by zero or accessing array elements out of bounds.
+
+2.1 NullPointerException
+
+Cause: Attempting to access or modify an object that is null.
+Example:
+java
+Copy code
+myObject.method(); // myObject is null.
+2.2 ArrayIndexOutOfBoundsException
+
+Cause: Accessing an array element using an index outside its bounds.
+Example:
+java
+Copy code
+int[] array = {1, 2, 3};
+int
+

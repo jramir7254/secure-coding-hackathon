@@ -1,4 +1,4 @@
-package com.hacktheborder;
+package com.hacktheborder.frame;
 
 import java.awt.Container;
 import java.awt.Dimension;

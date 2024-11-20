@@ -12,11 +12,12 @@ import com.hacktheborder.managers.ApplicationManager.QuestionAreaManager;
 public class FileManager {
     private File javaFile;
     private String tempDir;
+    private String className;
 
     public FileManager() {
         tempDir = System.getProperty("java.io.tmpdir");
         String javaFilePath = tempDir + "/Test.java";
-        String className = "Test";
+        className = "Test"; //QuestionManager.getQuestionClassName();
         javaFile = new File(tempDir, "Test.java");
    
     }
@@ -35,9 +36,6 @@ public class FileManager {
     }
 
     public void writeToFile() {
-
-
-
         String output = QuestionAreaManager.getWriteOutputText();
 
         try(BufferedWriter fileWriter = new BufferedWriter(new FileWriter(javaFile))) {
@@ -53,21 +51,16 @@ public class FileManager {
     public static String readFile() {
         StringBuilder sb = new StringBuilder();
       
-        try(InputStream inputStream = FileManager.class.getClassLoader().getResourceAsStream("info.txt")) {
-            Scanner fileWriter = new Scanner(inputStream);
+        try(Scanner fileReader = new Scanner(FileManager.class.getClassLoader().getResourceAsStream("info.txt"))) {
 
-            while(fileWriter.hasNext()) {
-                sb.append(fileWriter.nextLine()).append("\n");
+            while(fileReader.hasNext()) {
+                sb.append(fileReader.nextLine()).append("\n");
             }
-           // System.out.println(sb.toString());
-           fileWriter.close();
+
             return sb.toString();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
-
-    
-    
 }

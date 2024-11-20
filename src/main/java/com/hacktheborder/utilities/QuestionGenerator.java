@@ -7,6 +7,10 @@ import java.util.Scanner;
 
 public class QuestionGenerator {
     static private File windowsFile, appleFile;
+
+    // public static void main(String[] args) {
+    //     M();
+    // }
     public static void M() {
         appleFile = new File("src/main/java/com/hacktheborder/");
             windowsFile = new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\");
@@ -18,7 +22,7 @@ public class QuestionGenerator {
             String[] strs = new String[3];
             String questionType = "";
             String secondQ = "";
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < 22; j++) {
                 
                 int i = 0;
                     while(scan.hasNextLine() && i < 3) {

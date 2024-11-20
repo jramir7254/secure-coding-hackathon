@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 public class ThreadRunner extends Thread {
     private ProcessBuilder processBuilder;
     private Process process;
-    private File windowsFile, appleFile;
     private String output;
 
     public ThreadRunner(String file) {
@@ -48,7 +47,7 @@ public class ThreadRunner extends Thread {
         try {
             process = processBuilder.start();
    
-            if (!process.waitFor(3, java.util.concurrent.TimeUnit.SECONDS)) {
+            if (!process.waitFor(2, java.util.concurrent.TimeUnit.SECONDS)) {
                 // Timeout exceeded: terminate the process and interrupt this thread
                 process.destroy();
                 this.interrupt();
@@ -62,7 +61,6 @@ public class ThreadRunner extends Thread {
             
             String line;
             while ((line = reader.readLine()) != null) {
-                //System.out.println("Output: " + line);
                 sb.append(line).append("\n");     
             }
 

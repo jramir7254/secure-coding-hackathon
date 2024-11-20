@@ -1,4 +1,4 @@
-package com.hacktheborder;
+package com.hacktheborder.frame;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -23,6 +23,10 @@ public class QuestionContainerPanel extends RoundedJPanel {
     private RoundedJTextArea questionArea;
     private RTextArea nonEditableTextArea1, nonEditableTextArea2;
     private RTextArea editableTextArea;
+    private final int THIS_PANEL_WIDTH = (int)(GUIManager.PANEL_WIDTH * 0.9); //0.85
+    private final int THIS_PANEL_HEIGHT = (int)(GUIManager.PANEL_HEIGHT * 0.4);
+    private final int THIS_BUTTON_WIDTH = (int)(GUIManager.PANEL_WIDTH * 0.1); //0.1
+
 
    
     public void updateTextAreaFields() {

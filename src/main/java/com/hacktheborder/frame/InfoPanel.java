@@ -1,4 +1,4 @@
-package com.hacktheborder.utilities;
+package com.hacktheborder.frame;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
@@ -30,6 +31,7 @@ import javax.swing.border.LineBorder;
 import com.hacktheborder.custom.classes.RoundedJLabel;
 import com.hacktheborder.custom.classes.RoundedJTextArea;
 import com.hacktheborder.managers.GUIManager;
+import com.hacktheborder.utilities.FileManager;
 
 
 public class InfoPanel extends JPanel {
@@ -65,9 +67,9 @@ public class InfoPanel extends JPanel {
         RoundedJLabel infoLabel = new RoundedJLabel(20, GUIManager.BUTTON_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR) {
             {
                 setBackground(GUIManager.BUTTON_BACKGROUND_COLOR);
-                setFont(new Font("Calibri", Font.BOLD, 20));
+                setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_18));
                 setForeground(Color.WHITE);
-                setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 50));
+                setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 3), 50));
                 setMaximumSize(getPreferredSize());
                 setMinimumSize(getPreferredSize());
                 setHorizontalAlignment(SwingConstants.CENTER);
@@ -82,9 +84,11 @@ public class InfoPanel extends JPanel {
 
         RoundedJTextArea  txcArea = new RoundedJTextArea(25, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR) {{
             setText(FileManager.readFile());
-            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 1200));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 1800));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
+            //setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_12));
             setEditable(false);
             setCaretPosition(0);
             setVisible(false);
@@ -96,8 +100,10 @@ public class InfoPanel extends JPanel {
 
 
         JScrollPane jsp = new JScrollPane(txcArea) {{
-            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 400));
-            // setMaximumSize(getPreferredSize());
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 800));
+            setMaximumSize(getPreferredSize());
+            setMinimumSize(getPreferredSize());
+            setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
             setBackground(GUIManager.MAIN_FRAME_BACKGROUND_COLOR);

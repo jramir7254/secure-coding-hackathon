@@ -1,4 +1,4 @@
-package com.hacktheborder.utilities;
+package com.hacktheborder.frame;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -18,6 +19,7 @@ import javax.swing.Timer;
 
 import com.hacktheborder.custom.classes.RoundedJLabel;
 import com.hacktheborder.managers.GUIManager;
+import com.hacktheborder.utilities.SQLConnector;
 
 public final class LeaderBoardPanel extends JPanel {
     private Timer timer;
@@ -38,12 +40,12 @@ public final class LeaderBoardPanel extends JPanel {
         JPanel leaderBoardContainerJPanel = new JPanel(true) {{
             setBackground(GUIManager.MAIN_FRAME_BACKGROUND_COLOR);
             setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 800));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), GUIManager.PANEL_HEIGHT));
             setAlignmentX(Component.CENTER_ALIGNMENT);
         }};
      
 
-        JLabel leaderBoardTitleJLabel = getRoundedJLabel("Leaderboard");
+        JLabel leaderBoardTitleJLabel = getRoundedJLabel("Leaderboard Top 5", GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR);
 
         timer = new Timer(10_000, new ActionListener() {
             @Override
@@ -55,7 +57,7 @@ public final class LeaderBoardPanel extends JPanel {
                          
                 for (String team : topTeams) {
                     leaderBoardContainerJPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-                    leaderBoardContainerJPanel.add(getRoundedJLabel(team));
+                    leaderBoardContainerJPanel.add(getRoundedJLabel(team, GUIManager.BUTTON_BACKGROUND_COLOR));
                 }
 
                 leaderBoardContainerJPanel.revalidate();
@@ -74,12 +76,13 @@ public final class LeaderBoardPanel extends JPanel {
 
 
 
-    private RoundedJLabel getRoundedJLabel(String text) {
-        return new RoundedJLabel(20, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR) {{
+    private RoundedJLabel getRoundedJLabel(String text, Color color) {
+        return new RoundedJLabel(20, color, GUIManager.MAIN_FRAME_BACKGROUND_COLOR) {{
             setText(text);
-            setFont(new Font("Calibri", Font.BOLD, 20));
+            setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_18));
             setForeground(Color.WHITE);
-            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 50));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 3), (int)(GUIManager.PANEL_HEIGHT * 0.05)));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setHorizontalAlignment(SwingConstants.CENTER);

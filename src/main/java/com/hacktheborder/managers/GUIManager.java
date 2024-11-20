@@ -4,34 +4,18 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.text.StyleConstants;
-
-import org.fife.ui.rsyntaxtextarea.AbstractTokenMakerFactory;
-import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
-import org.fife.ui.rsyntaxtextarea.Theme;
-
-import org.fife.ui.rsyntaxtextarea.Token;
-import org.fife.ui.rsyntaxtextarea.TokenMakerFactory;
-import org.fife.ui.rsyntaxtextarea.modes.JavaScriptTokenMaker;
-import org.fife.ui.rtextarea.RTextScrollPane;
-import org.jdesktop.swingx.JXTextField;
-
-import com.hacktheborder.custom.classes.*;
 import java.awt.Toolkit;
-
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.FlatClientProperties;
+import javax.swing.*;
+
+import com.hacktheborder.custom.classes.*;
+
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.Theme;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
 
 
 public class GUIManager {
@@ -49,10 +33,21 @@ public class GUIManager {
     private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int SCREEN_WIDTH = screenSize.width;
     public static final int SCREEN_HEIGHT = screenSize.height;
-    public static final int PANEL_WIDTH = (int)(SCREEN_WIDTH / 2);
-    public static final int PANEL_HEIGHT = (int)(SCREEN_HEIGHT / 1.2);
+    public static final int PANEL_WIDTH = (int)(SCREEN_WIDTH / 2.20);
+    public static final int PANEL_HEIGHT = (int)(SCREEN_HEIGHT / 1.35);
     public static final int BUTTON_WIDTH = (int)(PANEL_WIDTH / 1.75);
     public static final int BUTTON_HEIGHT = (int)(SCREEN_HEIGHT / 1.2);
+    public static final int THIS_PANEL_WIDTH = (int)(GUIManager.PANEL_WIDTH * 0.9); //0.85
+    public static final int THIS_PANEL_HEIGHT = (int)(GUIManager.PANEL_HEIGHT * 0.4);
+    public static final int THIS_BUTTON_WIDTH = (int)(GUIManager.PANEL_WIDTH * 0.1); //0.1
+
+    public static final int FONT_SIZE_8 = (int)(((double)SCREEN_WIDTH/SCREEN_HEIGHT) * 4.7);
+  
+    public static final int FONT_SIZE_12 = (int)(((double)SCREEN_WIDTH/SCREEN_HEIGHT) * 7);
+
+    public static final int FONT_SIZE_15 = (int)(((double)SCREEN_WIDTH/SCREEN_HEIGHT) * 8.82);
+
+    public static final int FONT_SIZE_18 = (int)(((double)SCREEN_WIDTH/SCREEN_HEIGHT) * 10.6);
 
 
 
@@ -60,18 +55,22 @@ public class GUIManager {
 
 
     public static RoundedJTextArea getQuestion(Color color) {
+     
+        System.out.println(SCREEN_WIDTH/SCREEN_HEIGHT);
+        System.out.println("size 18: " + FONT_SIZE_18);
         return new RoundedJTextArea(35, color, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR) {
             {
-                setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), (int)(PANEL_HEIGHT * 0.1)));
+                setPreferredSize(new Dimension(THIS_PANEL_WIDTH, (int)(PANEL_HEIGHT * 0.125)));
                 setMaximumSize(getPreferredSize());
                 setMinimumSize(getPreferredSize());
                 setLineWrap(true);
                 setWrapStyleWord(true);
                 setFocusable(false);
                 setCaretColor(Color.WHITE);
+                setForeground(Color.WHITE);
                 setEditable(false);
-                setBorder(BorderFactory.createEmptyBorder(25, 25, 10, 10));
-                setFont(new Font("Calibri", Font.BOLD, 20));
+                setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 10));
+                setFont(new Font("Helvetica", Font.BOLD, FONT_SIZE_15));
                 new JScrollPane(this);
             }
         };
@@ -79,26 +78,8 @@ public class GUIManager {
 
 
 
-    // public static JTextArea getTextArea(String s) {
-    //     return new JTextArea(s) {
-    //         {
-    //             setOpaque(true);
-    //             setFont(new Font("Courier New", Font.PLAIN, 13));
-    //             setEditable(false);
-    //             setForeground(Color.WHITE);
-    //             setLineWrap(true);
-    //             setWrapStyleWord(true);
-    //             setBackground(new Color(35, 39, 46));
-    //             setCaretColor(Color.WHITE);
-    //             setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), 150));
-    //             setMaximumSize(getPreferredSize());
-    //             setMinimumSize(getPreferredSize());
-    //         }
-    //     };
-    // }
-
     public static RSyntaxTextArea gSyntaxTextArea() {
-        return new RSyntaxTextArea(5, 30) {{
+        return new RSyntaxTextArea() {{
             InputStream themeStream = null;
             try {
                 themeStream = GUIManager.class.getResourceAsStream("/dark.xml");
@@ -124,8 +105,8 @@ public class GUIManager {
 
             setSyntaxEditingStyle(RSyntaxTextArea.SYNTAX_STYLE_JAVA);
 
-
-            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), (int)(PANEL_HEIGHT * 0.15)));
+            setFont(new Font("Courier New", Font.BOLD, FONT_SIZE_12));
+            setPreferredSize(new Dimension(THIS_PANEL_WIDTH, (int)(PANEL_HEIGHT * 0.15)));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setLineWrap(true);
@@ -153,7 +134,7 @@ public class GUIManager {
     public static RoundedJXTextField getRoundedJXTextField(int r, Color c, Color p) {
         return new RoundedJXTextField(r, c, p) {
             {
-                setFont(new Font("Calibri", Font.BOLD, 15));
+                setFont(new Font("Calibri", Font.BOLD, FONT_SIZE_15));
                 setForeground(Color.WHITE);
                 setPromptFontStyle(Font.BOLD);
                 setPromptForeground(new Color(255, 255, 255, 122));
@@ -180,9 +161,9 @@ public class GUIManager {
             setBackground(new Color(35, 34, 39));
             setForeground(Color.WHITE);
             setEditable(false);
-            setFont(new Font("Calibri", Font.PLAIN, 18));
+            setFont(new Font("Calibri", Font.PLAIN, FONT_SIZE_18));
             setCaretColor(getBackground());
-            setPreferredSize(new Dimension((int)(SCREEN_WIDTH * 0.1), 50)); // EDIT THISSSSSSSSSSSSSSSSSSSS
+            setPreferredSize(new Dimension((int)(SCREEN_WIDTH * 0.1), (int)(PANEL_HEIGHT * 0.05))); // EDIT THISSSSSSSSSSSSSSSSSSSS
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
         }};
@@ -190,14 +171,14 @@ public class GUIManager {
 
     public static JToggleButton getToggleButton(String buttonType) {
         return new JToggleButton(buttonType) {{
-            setFont(new Font("Calibri", Font.BOLD, 12));
+            setFont(new Font("Calibri", Font.BOLD, FONT_SIZE_12));
             setBackground(BUTTON_BACKGROUND_COLOR);
             setActionCommand(buttonType);
             setOpaque(false);
             setAlignmentX(Component.CENTER_ALIGNMENT);
             setForeground(Color.BLACK);
             putClientProperty("JComponent.roundRect", true);
-            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.5), 50));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.5), (int)(PANEL_HEIGHT * 0.06)));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             

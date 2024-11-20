@@ -2,24 +2,18 @@ package com.hacktheborder.managers;
 
 import java.awt.BorderLayout;
 
-import com.hacktheborder.*;
 
 import javax.swing.JPanel;
 
 
-import com.hacktheborder.utilities.InfoPanel;
-import com.hacktheborder.utilities.LeaderBoardPanel;
-import com.hacktheborder.utilities.Question;
-import com.hacktheborder.utilities.QuestionHolder;
-import com.hacktheborder.utilities.QuizScoreCalculator;
-import com.hacktheborder.utilities.SQLConnector;
-import com.hacktheborder.utilities.Team;
+import com.hacktheborder.frame.*;
+import com.hacktheborder.panels.*;
+import com.hacktheborder.utilities.*;
 
 
 public class ApplicationManager {
 
 
-    private final static  ConfigSQLConPanel       CONFIG_SQL_CON_PANEL     = new ConfigSQLConPanel();
     private final static  DebuggingPanel          DEBUGGING_PANEL          = new DebuggingPanel();
     private final static  EndGamePanel            END_GAME_PANEL           = new EndGamePanel();
     private final static  HeaderPanel             HEADER_PANEL             = new HeaderPanel();
@@ -82,6 +76,7 @@ public class ApplicationManager {
 
 
     public static void start() {
+
         MAIN_FRAME.add(HEADER_PANEL, BorderLayout.NORTH);
 
         MAIN_FRAME.add(LEADERBOARD_CONTAINER_PANEL, BorderLayout.WEST);
@@ -115,8 +110,8 @@ public class ApplicationManager {
         public static void displayEndGameScreen() {
             CENTER_COMP_CONTAINER_JPANEL.remove(QUESTION_CONTAINER_PANEL);
             CENTER_COMP_CONTAINER_JPANEL.add(END_GAME_PANEL);
-            HEADER_PANEL.stopTimer();
-            HEADER_PANEL.resetTimer();
+            HEADER_PANEL.stopAllTimers();
+            HEADER_PANEL.resetAllTimers();
             refresh();
         }
     }
@@ -154,11 +149,13 @@ public class ApplicationManager {
 
 
         public static void updateTeamScore() {
-            int timeInSeconds = HEADER_PANEL.getTotalTimeSeconds();
+            int timeInSeconds = HEADER_PANEL.getQuestionTimeSeconds();
+            HEADER_PANEL.stopQuestionTimer();
             int numWrongAttempts = MULTIPLE_CHOICE_PANEL.getNumWrongAttempts();
             int score = QuizScoreCalculator.calculateScore(timeInSeconds, numWrongAttempts);
             currentTeam.setUpdateTeamScore(score);
-            HEADER_PANEL.updateAll();
+            //HEADER_PANEL.resetQuestionTimer();
+            HEADER_PANEL.updateScore();
         }
 
 
@@ -171,6 +168,9 @@ public class ApplicationManager {
     public static class QuestionManager {
         public static void updateQuestion() {
             if(!QUESTION_HOLDER.isEmpty()) {
+                HEADER_PANEL.startQuestionTimer();
+                HEADER_PANEL.resetQuestionTimer();
+                //HEADER_PANEL.startQuestionTimer();
                 currentQuestion = QUESTION_HOLDER.getNextQuestion();
                 QUESTION_CONTAINER_PANEL.nextQuestion();
             } else {
@@ -190,7 +190,7 @@ public class ApplicationManager {
             TeamManager.updateTeam(currentTeamName);
             QuestionManager.updateQuestion();
             HEADER_PANEL.updateAll();
-            HEADER_PANEL.startTimer();
+            HEADER_PANEL.startAllTimers();
             MainFrameManager.displayQuestionArea();
         }
 
