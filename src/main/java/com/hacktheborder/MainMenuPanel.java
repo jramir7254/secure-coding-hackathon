@@ -1,6 +1,4 @@
 package com.hacktheborder;
-import org.jdesktop.swingx.JXTextField;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -18,11 +16,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.hacktheborder.custom.classes.RoundedJPanel;
 import com.hacktheborder.custom.classes.RoundedJXTextField;
-import com.hacktheborder.managers.ApplicationManager;
 import com.hacktheborder.managers.ApplicationManager.QuestionAreaManager;
 import com.hacktheborder.managers.ApplicationManager.SQLManager;
-import com.hacktheborder.managers.ApplicationManager.TeamManager;
-import com.hacktheborder.utilities.Team;
 import com.hacktheborder.managers.GUIManager;
 
 
@@ -51,7 +46,7 @@ public class MainMenuPanel extends RoundedJPanel {
 
         ImageIcon icon = new ImageIcon(getClass().getResource("/Cover.png"));
         Image image = icon.getImage(); // Get the original image
-        Image resizedImage = image.getScaledInstance(600,  300, Image.SCALE_SMOOTH); // Resize the image
+        Image resizedImage = image.getScaledInstance(GUIManager.PANEL_WIDTH / 2,  300, Image.SCALE_SMOOTH); // Resize the image CHANGE SIZING
         ImageIcon resizedIcon = new ImageIcon(resizedImage);
 
 
@@ -76,7 +71,7 @@ public class MainMenuPanel extends RoundedJPanel {
 
         submitFieldsButton = new JButton("Submit") {{
             setAlignmentX(Component.CENTER_ALIGNMENT);
-            setPreferredSize(new Dimension(GUIManager.BUTTON_WIDTH, 50));
+            setPreferredSize(new Dimension(GUIManager.BUTTON_WIDTH, (int)(GUIManager.PANEL_HEIGHT * 0.05)));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             addActionListener(e -> {
@@ -94,7 +89,7 @@ public class MainMenuPanel extends RoundedJPanel {
         
         newTeamSubmitFieldsButton = new JButton("Submit New") {{
             setAlignmentX(Component.CENTER_ALIGNMENT);
-            setPreferredSize(new Dimension(GUIManager.BUTTON_WIDTH, 50));
+            setPreferredSize(new Dimension(GUIManager.BUTTON_WIDTH, (int)(GUIManager.PANEL_HEIGHT * 0.05)));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             addActionListener(e -> {
@@ -107,9 +102,9 @@ public class MainMenuPanel extends RoundedJPanel {
 
         
         add(coverImageLabel);
-        add(Box.createRigidArea(new Dimension(0, 100)));
+        add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.1))));
         add(teamNameTextField);
-        add(Box.createRigidArea(new Dimension(0, 50)));
+        add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.05))));
         add(submitFieldsButton);
 
   
@@ -118,7 +113,7 @@ public class MainMenuPanel extends RoundedJPanel {
 
     public JTextField getT() {
         return new JTextField() {{
-            setPreferredSize(new Dimension(400, 25));
+            setPreferredSize(new Dimension(GUIManager.PANEL_WIDTH / 2, 25));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setFocusable(false);
@@ -202,15 +197,15 @@ public class MainMenuPanel extends RoundedJPanel {
     private void createNewUserPage() {
         removeAll();
         add(coverImageLabel);
-        add(Box.createRigidArea(new Dimension(0, 100)));
+        add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.1))));
         add(teamNameTextField);
-        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.01))));
         add(invalidNumMembersTextField, Component.LEFT_ALIGNMENT);
         add(numMembersTextField);
-        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.01))));
         add(invalidIdNumTextField);
         add(idNumTextField);
-        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.01))));
         add(newTeamSubmitFieldsButton);
         revalidate();
         repaint();

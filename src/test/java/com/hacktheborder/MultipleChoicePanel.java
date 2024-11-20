@@ -33,7 +33,7 @@ public class MultipleChoicePanel extends RoundedJPanel {
         super(35, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR);
         //setBackground(ComponentGUIManager.backColor3);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.5), 350));
+        setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), 350));
         setMaximumSize(getPreferredSize());
         setMinimumSize(getPreferredSize());
         wrongAttempts = 0;

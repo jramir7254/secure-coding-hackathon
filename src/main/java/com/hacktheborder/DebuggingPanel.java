@@ -5,14 +5,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import com.hacktheborder.managers.ApplicationManager;
 import com.hacktheborder.managers.ApplicationManager.QuestionAreaManager;
 import com.hacktheborder.managers.ApplicationManager.QuestionManager;
 import com.hacktheborder.managers.ApplicationManager.TeamManager;
@@ -29,7 +27,7 @@ public class DebuggingPanel extends JPanel {
 
     public DebuggingPanel() {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(((int)(GUIManager.PANEL_WIDTH * 0.8)), 350));
+        setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), (int)(GUIManager.PANEL_HEIGHT * 0.4)));
         setMinimumSize(getPreferredSize());
         setMaximumSize(getPreferredSize());
         setBackground(new Color(77, 88, 101));
@@ -40,7 +38,7 @@ public class DebuggingPanel extends JPanel {
             setEditable(false);
             setForeground(Color.WHITE);
             setFont(new Font("Courier New", Font.PLAIN, 13));
-            setPreferredSize(new Dimension(GUIManager.PANEL_WIDTH, 300));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), (int)(GUIManager.PANEL_HEIGHT * 0.35)));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
         }};
@@ -48,7 +46,7 @@ public class DebuggingPanel extends JPanel {
 
         jsp = new JScrollPane(consoleArea) {{
             putClientProperty("JComponent.roundRect", true);
-            setPreferredSize(new Dimension(800, 300));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), (int)(GUIManager.PANEL_HEIGHT * 0.35)));
             setMinimumSize(consoleArea.getPreferredSize());
             setMaximumSize(consoleArea.getPreferredSize());
             setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -57,7 +55,7 @@ public class DebuggingPanel extends JPanel {
 
 
         runButton = new JButton("Run") {{
-            setPreferredSize(new Dimension(((int)(GUIManager.PANEL_WIDTH * 0.8)), 50));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.1), (int)(GUIManager.PANEL_HEIGHT * 0.05)));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             addActionListener(e -> {
@@ -69,7 +67,7 @@ public class DebuggingPanel extends JPanel {
 
 
         resetButton = new JButton("Reset") {{
-            setPreferredSize(new Dimension(100, 50));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.1), (int)(GUIManager.PANEL_HEIGHT * 0.05)));
             addActionListener(e -> {
                 QuestionAreaManager.resetEditableTextArea();
             });
@@ -77,7 +75,7 @@ public class DebuggingPanel extends JPanel {
 
 
         nextButton = new JButton("Next") {{
-            setPreferredSize(new Dimension(100, 50));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.1), (int)(GUIManager.PANEL_HEIGHT * 0.05)));
             addActionListener(e -> {
                 
                 prepareNextQuestion();
@@ -86,7 +84,7 @@ public class DebuggingPanel extends JPanel {
 
 
         buttonsJPanel = new JPanel() {{
-            setPreferredSize(new Dimension(600,75));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85),(int)(GUIManager.PANEL_HEIGHT * 0.085)));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setLayout(new FlowLayout(FlowLayout.CENTER));

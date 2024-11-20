@@ -67,7 +67,7 @@ public class InfoPanel extends JPanel {
                 setBackground(GUIManager.BUTTON_BACKGROUND_COLOR);
                 setFont(new Font("Calibri", Font.BOLD, 20));
                 setForeground(Color.WHITE);
-                setPreferredSize(new Dimension(400, 50));
+                setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 50));
                 setMaximumSize(getPreferredSize());
                 setMinimumSize(getPreferredSize());
                 setHorizontalAlignment(SwingConstants.CENTER);
@@ -82,7 +82,7 @@ public class InfoPanel extends JPanel {
 
         RoundedJTextArea  txcArea = new RoundedJTextArea(25, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR) {{
             setText(FileManager.readFile());
-            setPreferredSize(new Dimension(400, 1200));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 1200));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setEditable(false);
@@ -96,7 +96,7 @@ public class InfoPanel extends JPanel {
 
 
         JScrollPane jsp = new JScrollPane(txcArea) {{
-            setPreferredSize(new Dimension(400, 400));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 400));
             // setMaximumSize(getPreferredSize());
             setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);

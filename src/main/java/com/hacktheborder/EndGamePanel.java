@@ -24,13 +24,13 @@ public class EndGamePanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         newGame = new JButton("New Game") {{
-            setPreferredSize(new Dimension(GUIManager.BUTTON_WIDTH, 50));
+            setPreferredSize(new Dimension(GUIManager.BUTTON_WIDTH, (int)(GUIManager.PANEL_HEIGHT * 0.05)));
             setMinimumSize(getPreferredSize());
             setMaximumSize(getPreferredSize());
         }};
 
         mainMenu = new JButton("Main Menu") {{
-            setPreferredSize(new Dimension(GUIManager.BUTTON_WIDTH, 50));
+            setPreferredSize(new Dimension(GUIManager.BUTTON_WIDTH,  (int)(GUIManager.PANEL_HEIGHT * 0.05)));
             setMinimumSize(getPreferredSize());
             setMaximumSize(getPreferredSize());
             setAlignmentX(Container.CENTER_ALIGNMENT);

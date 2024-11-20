@@ -38,7 +38,7 @@ public final class LeaderBoardPanel extends JPanel {
         JPanel leaderBoardContainerJPanel = new JPanel(true) {{
             setBackground(GUIManager.MAIN_FRAME_BACKGROUND_COLOR);
             setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-            setPreferredSize(new Dimension(400, 800));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 800));
             setAlignmentX(Component.CENTER_ALIGNMENT);
         }};
      
@@ -79,7 +79,7 @@ public final class LeaderBoardPanel extends JPanel {
             setText(text);
             setFont(new Font("Calibri", Font.BOLD, 20));
             setForeground(Color.WHITE);
-            setPreferredSize(new Dimension(400, 50));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 50));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setHorizontalAlignment(SwingConstants.CENTER);

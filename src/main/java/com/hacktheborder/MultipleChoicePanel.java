@@ -9,15 +9,12 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
-import com.hacktheborder.custom.classes.RoundedComponent;
 import com.hacktheborder.custom.classes.RoundedJPanel;
-import com.hacktheborder.managers.ApplicationManager;
-import com.hacktheborder.managers.GUIManager;
 import com.hacktheborder.managers.ApplicationManager.QuestionAreaManager;
 import com.hacktheborder.managers.ApplicationManager.QuestionManager;
+import com.hacktheborder.managers.GUIManager;
 
 public class MultipleChoicePanel extends RoundedJPanel {
     private final String[] OPTIONS = new String[] {"Compile Time Error", "Runtime Error", "Logic Error", "Vulnerability"};
@@ -33,7 +30,7 @@ public class MultipleChoicePanel extends RoundedJPanel {
         super(35, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR);
         //setBackground(ComponentGUIManager.backColor3);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        setPreferredSize(new Dimension(800, 350));
+        setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.85), (int)(GUIManager.PANEL_HEIGHT * 0.4)));
         setMaximumSize(getPreferredSize());
         setMinimumSize(getPreferredSize());
         wrongAttempts = 0;
@@ -46,7 +43,7 @@ public class MultipleChoicePanel extends RoundedJPanel {
  
 
         submitButton = new JButton("Submit") {{
-            setPreferredSize(new Dimension(500, 50));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.5), (int)(GUIManager.PANEL_HEIGHT * 0.05)));
             setAlignmentX(Component.CENTER_ALIGNMENT);
             setBackground(new Color(232, 188, 185));
             setForeground(Color.BLACK);
@@ -95,11 +92,11 @@ public class MultipleChoicePanel extends RoundedJPanel {
 
     private void addButtonsToPanel() {
         for(JToggleButton button : buttons) {
-            add(Box.createRigidArea(new Dimension(0, 10)));
+            add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.01))));
             add(button);
 
         }
-        add(Box.createRigidArea(new Dimension(0, 25)));
+        add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.02))));
         add(submitButton);
         revalidate();
         repaint();
