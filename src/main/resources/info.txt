@@ -1,13 +1,14 @@
-  How to Play: You will first answer a question And answer what type of 
-  error it is. The next section
-  have to fix the highlighted code and run it so it
-  mathces the output of the top text.
+  
+  How to Play: You will first answer a question And answer what 
+  type of error it is. The next section have to fix the 
+  highlighted code and run it so it mathces the output of the 
+  top text.
 
-  Score: Scoring is based on how many attempts on the
-  multiple choice and how long it takes to solve one 
-  problem. You are penalized for selecting multiple wrong
-  answers and for taking too long. The faster you can
-  answer a question correctly, the more points you get.
+  Score: Scoring is based on how many attempts on the multiple 
+  choice and how long it takes to solve one problem. You are
+  penalized for selecting multiple wrong answers and for taking 
+  too long. The faster you can answer a question correctly, the 
+  more points you get.
 
   Compile Time Errors: Errors detected by the compiler before 
   the program runs, usually due to syntax mistakes or type 
@@ -32,16 +33,19 @@
 
           -Example: int x = "Hello"; (String assigned to an int).
 
-  Runtime Error/Exceptions: Errors that occur while the program is executing, 
-  often caused by invalid operations like dividing by zero or accessing out-of-bound array elements.
+  Runtime Error/Exceptions: Errors that occur while the program 
+  is executing, often caused by invalid operations like dividing
+  by zero or accessing out-of-bound array elements.
 
       1. NullPointerException
-          - Cause: Attempting to access or modify an object that is null.
+          - Cause: Attempting to access or modify an object that 
+            is null.
 
           - Example: myObject.method(); when myObject is null.
 
       2. ArrayIndexOutOfBoundsException
-          - Cause: Trying to access an array element with an index outside its bounds.
+          - Cause: Trying to access an array element with an index 
+           outside its bounds.
 
           - Example: Accessing array[5] when array has only 5 elements (0-4).
 
@@ -69,7 +73,7 @@
           - Example: if (x > 10 && x < 5) will always be false.
 
   Vulnerability: Weaknesses in a system or code that attackers can exploit to gain unauthorized 
-  access, cause disruptions, or extract sensitive information.+
+  access, cause disruptions, or extract sensitive information.
 
       1.Logging or Printing Sensitive Information
           -Outputting sensitive data, such as passwords, personal information, or API keys, to logs or console output.

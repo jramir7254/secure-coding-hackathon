@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
@@ -34,6 +35,8 @@ public class MainMenuPanel extends RoundedJPanel {
     public MainMenuPanel() {
         super(175, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR);
 
+        
+        
 
         setPreferredSize(new Dimension(GUIManager.PANEL_WIDTH, GUIManager.PANEL_HEIGHT));
         setMaximumSize(getPreferredSize());
@@ -44,7 +47,7 @@ public class MainMenuPanel extends RoundedJPanel {
         setBorder(new EmptyBorder(20, 20, 20, 20));
         
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/Cover.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Untitled.png"));
         Image image = icon.getImage(); // Get the original image
         Image resizedImage = image.getScaledInstance(GUIManager.PANEL_WIDTH / 2,  300, Image.SCALE_SMOOTH); // Resize the image CHANGE SIZING
         ImageIcon resizedIcon = new ImageIcon(resizedImage);
@@ -77,9 +80,12 @@ public class MainMenuPanel extends RoundedJPanel {
 
         submitFieldsButton = new JButton("Submit") {{
             setAlignmentX(Component.CENTER_ALIGNMENT);
-            setPreferredSize(new Dimension(GUIManager.BUTTON_WIDTH, (int)(GUIManager.PANEL_HEIGHT * 0.05)));
+            setPreferredSize(new Dimension(GUIManager.BUTTON_WIDTH, (int)(GUIManager.PANEL_HEIGHT * 0.0625)));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
+            setBackground(GUIManager.BUTTON_BACKGROUND_COLOR);
+            setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_15));
+            setForeground(Color.WHITE);
             addActionListener(e -> {
                 if(teamExist()) {
                     String teamName = teamNameTextField.getText();
@@ -105,7 +111,7 @@ public class MainMenuPanel extends RoundedJPanel {
             });
         }};
 
-        
+    
         add(coverImageLabel);
         add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.1))));
         add(teamNameTextField);
@@ -166,7 +172,7 @@ public class MainMenuPanel extends RoundedJPanel {
             return;
         }
 
-        SQLManager.createNewTeam(teamName, numMembers, idNumOfPersonPlaying);
+        SQLManager.createNewTeam(teamName.toUpperCase(), numMembers, idNumOfPersonPlaying);
 
     }
 
@@ -183,6 +189,7 @@ public class MainMenuPanel extends RoundedJPanel {
 
 
     private void validateLogin() {
+        
         if(teamExist()) {
             String name = teamNameTextField.getText();
             resetTextFields();

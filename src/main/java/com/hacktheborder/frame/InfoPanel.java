@@ -27,6 +27,7 @@ import java.awt.event.*;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 
 import com.hacktheborder.custom.classes.RoundedJLabel;
 import com.hacktheborder.custom.classes.RoundedJTextArea;
@@ -79,20 +80,21 @@ public class InfoPanel extends JPanel {
             }
         };
 
-        
+        //new RSyntaxTextArea(25, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR) {{
 
 
-        RoundedJTextArea  txcArea = new RoundedJTextArea(25, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR) {{
+        RoundedJTextArea txcArea = new RoundedJTextArea(25, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR) {{
             setText(FileManager.readFile());
             setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 1800));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
-            //setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_12));
             setEditable(false);
             setCaretPosition(0);
             setVisible(false);
         }};
+
+
 
 
    

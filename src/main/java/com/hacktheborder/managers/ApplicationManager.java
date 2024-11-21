@@ -2,7 +2,7 @@ package com.hacktheborder.managers;
 
 import java.awt.BorderLayout;
 
-
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 
@@ -104,11 +104,13 @@ public class ApplicationManager {
             CENTER_COMP_CONTAINER_JPANEL.remove(MAIN_MENU_PANEL);
             CENTER_COMP_CONTAINER_JPANEL.add(QUESTION_CONTAINER_PANEL);
             refresh();
+       
         }
 
 
         public static void displayEndGameScreen() {
             CENTER_COMP_CONTAINER_JPANEL.remove(QUESTION_CONTAINER_PANEL);
+            END_GAME_PANEL.update();
             CENTER_COMP_CONTAINER_JPANEL.add(END_GAME_PANEL);
             HEADER_PANEL.stopAllTimers();
             HEADER_PANEL.resetAllTimers();
@@ -122,6 +124,12 @@ public class ApplicationManager {
     public static class SQLManager {
         public static void startConnection() {
             SQL_CONNECTOR.startConnection();
+        }
+
+
+        public static void updateTeamDBScore() {
+            startConnection();
+            SQL_CONNECTOR.updateTeamCurrentScore(currentTeam.getTeamScore(), currentTeam.getTeamName().toUpperCase());
         }
 
 
@@ -153,9 +161,9 @@ public class ApplicationManager {
             HEADER_PANEL.stopQuestionTimer();
             int numWrongAttempts = MULTIPLE_CHOICE_PANEL.getNumWrongAttempts();
             int score = QuizScoreCalculator.calculateScore(timeInSeconds, numWrongAttempts);
-            currentTeam.setUpdateTeamScore(score);
-            //HEADER_PANEL.resetQuestionTimer();
+            currentTeam.updateTeamScore(score);
             HEADER_PANEL.updateScore();
+            SQLManager.updateTeamDBScore();
         }
 
 

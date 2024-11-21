@@ -6,6 +6,13 @@ import java.awt.Dimension;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
+import javax.swing.JToolTip;
+import javax.swing.JWindow;
+import javax.swing.border.LineBorder;
 
 import org.fife.ui.rtextarea.RTextArea;
 
@@ -27,7 +34,6 @@ public class QuestionContainerPanel extends RoundedJPanel {
     private final int THIS_PANEL_HEIGHT = (int)(GUIManager.PANEL_HEIGHT * 0.4);
     private final int THIS_BUTTON_WIDTH = (int)(GUIManager.PANEL_WIDTH * 0.1); //0.1
 
-
    
     public void updateTextAreaFields() {
         Question question = QuestionManager.getCurrentQuestion();
@@ -37,8 +43,12 @@ public class QuestionContainerPanel extends RoundedJPanel {
         editableTextArea.setEditable(false);
         editableTextArea.setBackground(new Color(40, 44, 52));
         nonEditableTextArea2.setText(question.getNonEditableCode2());
+        
 
     }
+
+
+
 
 
 
@@ -54,7 +64,8 @@ public class QuestionContainerPanel extends RoundedJPanel {
 
 
         questionArea = GUIManager.getQuestion(new Color(80, 67, 123));
-        //questionArea.putClientProperty("JComponent.roundRect", true);
+      
+
         nonEditableTextArea1 = GUIManager.gSyntaxTextArea();
         editableTextArea = GUIManager.gSyntaxTextArea();
         nonEditableTextArea2 = GUIManager.gSyntaxTextArea();

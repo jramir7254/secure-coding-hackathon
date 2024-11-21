@@ -19,7 +19,7 @@ public class SQLConnector {
     private PreparedStatement statement;
 
     private String user, password;
-    private static String databaseURL;
+    private static String databaseURL = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
 
 
     public static void setURL(String ipAddr) {
@@ -74,21 +74,48 @@ public class SQLConnector {
     }
 
 
-    public List<String> getTopFive() {
+    public List<String[]> getTopFive() {
         try {
-            String query = "SELECT * FROM TEAMS ORDER BY Team_Score DESC LIMIT 5";
+            String query = "SELECT * FROM TEAMS ORDER BY Current_Team_Score DESC LIMIT 5";
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
 
-            List<String> topTeams = new ArrayList<>();
+            List<String[]> topTeams = new ArrayList<>();
             while (resultSet.next()) {
                 String teamName = resultSet.getString("Team_Name");
-                int teamScore = resultSet.getInt("Team_Score");
-                topTeams.add("Team: " + teamName + "  Score: " + teamScore);
+                int teamScore = resultSet.getInt("Current_Team_Score");
+                topTeams.add(new String[] {teamName, teamScore +""});
             }
             return topTeams;
         } catch (Exception e) {
             return null;
+        } finally {
+            try {
+                resultSet.close();
+                statement.close();
+                connection.close();
+            } catch (Exception e) {
+                System.err.println("Error");
+            }
+        }
+    }
+
+
+    public void updateTeamCurrentScore(int score, String teamName) {
+        try {
+            System.out.println("updating");
+            System.out.println(teamName);
+            String query = "UPDATE Teams SET Current_Team_Score = ? WHERE Team_Name = ?;";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, score);
+            statement.setString(2, teamName);
+
+            if (statement.executeUpdate() == 1) 
+                System.out.println("Finished Updating Score");
+            
+            //System.out.println("Finished inserting new team.");
+        } catch (Exception e) {
+
         } finally {
             try {
                 resultSet.close();
@@ -158,13 +185,14 @@ public class SQLConnector {
     public void insertNewTeam(String lastName, int numMembers, int epccIdNumber) {
 
         try {
-            String query = "INSERT INTO Teams VALUES (?, ?, ?, ?);";
+            String query = "INSERT INTO Teams VALUES (?, ?, ?, ?, ?);";
 
             statement = connection.prepareStatement(query);
             statement.setString(1, lastName);
             statement.setInt(2, numMembers);
             statement.setInt(3, epccIdNumber);
             statement.setInt(4, 0);
+            statement.setInt(5, 0);
 
             if (statement.executeUpdate() > 0) 
                 System.out.println("A new row was inserted successfully!");
@@ -201,7 +229,7 @@ public class SQLConnector {
                 String teamName = resultSet.getString("Team_Name");
                 int numMembers = resultSet.getInt("Num_Members");
                 int idNum = resultSet.getInt("ID_Number");
-                int teamScore = resultSet.getInt("Team_Score");
+                int teamScore = resultSet.getInt("Current_Team_Score");
                 System.out.printf("Team successfully retrieved\n\tteam name: %s\n\tnum members: %d\n\tid num: %d \n", teamName, numMembers, idNum, teamScore);
                 return new Team(teamName, numMembers, idNum, teamScore);
             }

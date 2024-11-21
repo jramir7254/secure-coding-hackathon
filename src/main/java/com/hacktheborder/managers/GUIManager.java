@@ -20,7 +20,7 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 
 public class GUIManager {
     //
-    public final static Color MAIN_FRAME_BACKGROUND_COLOR       = new Color(67, 46, 84);
+    public final static Color MAIN_FRAME_BACKGROUND_COLOR       = new Color(69, 46, 85);
     // public final static Color CENTER_COMPONENT_BACKGROUND_COLOR = new Color(75, 67, 118);
     // public final static Color COMPONENT_CHILD_BACKGROUND_COLOR  = new Color(95, 67, 138);
 
@@ -29,25 +29,27 @@ public class GUIManager {
 
     public final static Color BUTTON_BACKGROUND_COLOR           = new Color(174, 68, 90);
 
+    public final static Color TRANSPARENT_COLOR           = new Color(0, 0, 0, 0);
+
 
     private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int SCREEN_WIDTH = screenSize.width;
     public static final int SCREEN_HEIGHT = screenSize.height;
     public static final int PANEL_WIDTH = (int)(SCREEN_WIDTH / 2.20);
-    public static final int PANEL_HEIGHT = (int)(SCREEN_HEIGHT / 1.35);
+    public static final int PANEL_HEIGHT = (int)(SCREEN_HEIGHT / 1.40);
     public static final int BUTTON_WIDTH = (int)(PANEL_WIDTH / 1.75);
     public static final int BUTTON_HEIGHT = (int)(SCREEN_HEIGHT / 1.2);
     public static final int THIS_PANEL_WIDTH = (int)(GUIManager.PANEL_WIDTH * 0.9); //0.85
     public static final int THIS_PANEL_HEIGHT = (int)(GUIManager.PANEL_HEIGHT * 0.4);
     public static final int THIS_BUTTON_WIDTH = (int)(GUIManager.PANEL_WIDTH * 0.1); //0.1
 
-    public static final int FONT_SIZE_8 = (int)(((double)SCREEN_WIDTH/SCREEN_HEIGHT) * 4.7);
+    public static final int FONT_SIZE_8 = (int)((double)SCREEN_HEIGHT * 0.0115);
   
-    public static final int FONT_SIZE_12 = (int)(((double)SCREEN_WIDTH/SCREEN_HEIGHT) * 7);
+    public static final int FONT_SIZE_12 = (int)((double)SCREEN_HEIGHT * 0.0120);
 
-    public static final int FONT_SIZE_15 = (int)(((double)SCREEN_WIDTH/SCREEN_HEIGHT) * 8.82);
+    public static final int FONT_SIZE_15 = (int)((double)SCREEN_HEIGHT * 0.0150);
 
-    public static final int FONT_SIZE_18 = (int)(((double)SCREEN_WIDTH/SCREEN_HEIGHT) * 10.6);
+    public static final int FONT_SIZE_18 = (int)((double)SCREEN_HEIGHT * 0.0175);
 
 
 
@@ -56,7 +58,7 @@ public class GUIManager {
 
     public static RoundedJTextArea getQuestion(Color color) {
      
-        System.out.println(SCREEN_WIDTH/SCREEN_HEIGHT);
+        System.out.println((int)((double)SCREEN_HEIGHT * 0.0115));
         System.out.println("size 18: " + FONT_SIZE_18);
         return new RoundedJTextArea(35, color, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR) {
             {
@@ -106,7 +108,7 @@ public class GUIManager {
             setSyntaxEditingStyle(RSyntaxTextArea.SYNTAX_STYLE_JAVA);
 
             setFont(new Font("Courier New", Font.BOLD, FONT_SIZE_12));
-            setPreferredSize(new Dimension(THIS_PANEL_WIDTH, (int)(PANEL_HEIGHT * 0.15)));
+            setPreferredSize(new Dimension(THIS_PANEL_WIDTH, (int)(PANEL_HEIGHT * 0.175)));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setLineWrap(true);
@@ -192,24 +194,3 @@ public class GUIManager {
 
 
 
-
-// private static void applyAtomDarkTheme(RSyntaxTextArea textArea) {
-//     // Set background and foreground colors for Atom Dark
-//     textArea.setBackground(new Color(40, 44, 52)); // Dark background
-//     //textArea.setForeground(new Color(171, 178, 191)); // Default text color
-
-//     // Keyword colors
-//     textArea.getSyntaxScheme().getStyle(Token.RESERVED_WORD).foreground = new Color(198, 120, 221); // Purple
-//     textArea.getSyntaxScheme().getStyle(Token.RESERVED_WORD_2).foreground = new Color(198, 120, 221); // Purple
-//     textArea.getSyntaxScheme().getStyle(Token.DATA_TYPE).foreground = new Color(86, 182, 194); // Cyan
-
-//     // Comments
-//     textArea.getSyntaxScheme().getStyle(Token.COMMENT_EOL).foreground = new Color(92, 99, 112); // Gray
-//     textArea.getSyntaxScheme().getStyle(Token.COMMENT_MULTILINE).foreground = new Color(92, 99, 112); // Gray
-
-//     // String literals
-//     textArea.getSyntaxScheme().getStyle(Token.LITERAL_STRING_DOUBLE_QUOTE).foreground = new Color(152, 195, 121); // Green
-
-//     // Operators
-//     textArea.getSyntaxScheme().getStyle(Token.OPERATOR).foreground = new Color(171, 178, 191); // Default text color
-// }

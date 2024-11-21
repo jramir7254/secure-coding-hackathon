@@ -151,9 +151,9 @@ STOP
             System.out.println("Result is : " + divide(a, b));
     }
 }
+STOP
 QUESTION_TYPE: Compile Time Error
 EXPECTED_OUTPUT: The total cost of your order is: $40.96
-STOP
 public class Test {
     public static void main(String[] args) {
         double coffeePrice = 4.50, pastryPrice = 7.99;
@@ -216,7 +216,7 @@ public class BackwardsWord {
         String word = "race car".toLowerCase();
         int index = word.length() - 1;
 
-        for (int index = word.length() - 1; index >= 0; index--) {
+        for (; ; index >= 0; index--) {
 STOP
             char c = word.charAt(i);
             System.out.print(c)); 
@@ -236,8 +236,8 @@ public class UserAge {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("What year were you born?");
-        int birthYear = 1987
-        validateResults(calculateAge(birthYear););
+        int birthYear = 1987;
+        validateResults(calculateAge(birthYear));
     } 
 
 STOP
@@ -254,6 +254,7 @@ STOP
         int expectedAge = 2024 - birthYear;
         System.out.println("Expected age calculation result: " + expectedAge);
     }
+}
 
 STOP
 QUESTION_TYPE: Compile Time Error
@@ -261,12 +262,10 @@ EXPECTED_OUTPUT: Your age is 37
 EXPECTED_OUTPUT: Expected age calculation result: 37
 public class UserAge {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("What year were you born?");
-        int birthYear = 1987
-        validateResults(calculateAge(birthYear););
+        int birthYear = 1987;
+        
+        validateResults(calculateAge(birthYear));
     } 
-
 STOP
 
     public static void calculateAge(int birthYear { 
@@ -276,16 +275,16 @@ STOP
     } 
 
 STOP
-
     public static void validateResults(int birthYear) {
         int expectedAge = 2024 - birthYear;
         System.out.println("Expected age calculation result: " + expectedAge);
     }
+}
 
 STOP
 QUESTION_TYPE: Compile Time Error
 EXPECTED_OUTPUT: Summary: Blue is a popular choice!
-EXPECTED_OUTPUT: Summary: Expected Red is vibrant and bold!
+EXPECTED_OUTPUT: Summary: Red is vibrant and bold!
 EXPECTED_OUTPUT: Summary: That's a unique choice!
 public class FavoriteColor {
     public static void main(String[] args) {
@@ -362,7 +361,6 @@ QUESTION_TYPE: Runtime Error
 EXPECTED_OUTPUT: Average: 81.4
 EXPECTED_OUTPUT: Thank you for using the Average Calculator.
 
-
 public class AverageCalculator {
     public static void main(String[] args) {
         int[] numbers = {90, 82, 98, 64, 73};
@@ -386,7 +384,6 @@ QUESTION_TYPE: Runtime Error
 EXPECTED_OUTPUT: The number is odd.
 EXPECTED_OUTPUT: 47
 EXPECTED_OUTPUT: Thank you for using EvenNumberChecker.
-
 
 public class EvenNumberChecker {
     public static void main(String[] args) {
@@ -414,7 +411,6 @@ STOP
 STOP
 QUESTION_TYPE: Runtime Error
 EXPECTED_OUTPUT: Total sum: 75
-
 public class SumArray {
     public static void main(String[] args) {
         int[] numbers = {1, 2, 3, 4, 5};
@@ -535,7 +531,7 @@ STOP
 }
 STOP
 QUESTION_TYPE: Logic Error
-EXPECTED_OUTPUT: Number of vowels: 8
+EXPECTED_OUTPUT: Number of vowels: 4
 public class VowelCounter {
     public static void main(String[] args) {
         String input = "Hello World!";
@@ -553,25 +549,30 @@ STOP
         } return count;
     }
 
-    public static void displayMessage(int numVowels) {
+    public static void printNumVowels(int numVowels) {
         System.out.println("Number of vowels: " + numVowels);
     }
 } 
 STOP
+QUESTION_TYPE: Logic Error
+EXPECTED_OUTPUT: Password contains a number.
+EXPECTED_OUTPUT: Password is valid.
 public class PasswordValidator {
     public static void main(String[] args) {
         String password = "password123";
         boolean isValid = validatePassword(password);
-        System.out.println("Password validation: " + isValid);
+        printValidationStatus(isValid);
     }
-STOP
+
     public static boolean validatePassword(String password) {
+STOP
         for (int i = 0; i < password.length(); i++) {
             if (Character.isDigit(password.charAt(i))) {
                 System.out.println("Password contains a number.");
+                return false;
             }
         }
-        return false; // Always returns false regardless of condition
+        return false; 
     }
 STOP
     public static void printValidationStatus(boolean status) {
@@ -581,6 +582,174 @@ STOP
             System.out.println("Password is invalid.");
         }
     }
-} 
+}
+STOP
+QUESTION_TYPE: Logic Error
+EXPECTED_OUTPUT: Access granted.
+public class AuthenticationSystem {
+    public static void main(String[] args) {
+        String userName = "admin";
+        String password = "password123";
 
+        printAuthenticationStatus(authenticate(userName, password));
+    }
+STOP
+    public static boolean authenticate(String username, String password) {
+        String storedUsername = "admin";
+        String storedPassword = "password123";
+
+        if (username == storedUsername && password == storedPassword)
+            return true;
+        return false;
+    }
+
+STOP
+    public static void printAuthenticationStatus(boolean status) {
+        if (status) {
+            System.out.println("Access granted.");
+        } else {
+            System.out.println("Access denied.");
+        }
+    }
+} 
+STOP
+QUESTION_TYPE: Logic Error
+EXPECTED_OUTPUT: The grade category assigned is: A
+public class QuizEvaluator {
+    public static void main(String[] args) {
+        int score = 92;
+        String grade = evaluateGrade(score);
+        printGrade(grade);
+    }
+STOP
+    public static String evaluateGrade(int score) {
+        if (score >= 90 && score < 80) 
+            return "A";
+         else if (score >= 70 && score < 90) 
+            return "B";
+         else if (score >= 50 && score < 70) 
+            return "C";
+STOP
+         else if (score < 50) 
+            return "F";
+        return "Invalid score";
+    }
+    public static void printGrade(String grade) {
+        System.out.println("The grade category assigned is: " + grade);
+    }
+} 
+STOP
+QUESTION_TYPE: Logic Error
+EXPECTED_OUTPUT: The total price after tax is: $54.0
+public class PriceCalculator {
+    public static void main(String[] args) {
+        double itemPrice = 50.0;
+        double taxRate = 0.08;
+        double totalPrice = calculateTotalPrice(itemPrice, taxRate);
+        System.out.println("The total price after tax is: $" + totalPrice);
+    }
+STOP
+     public static double calculateTotalPrice(double price, double tax) {
+        return price + tax + price; 
+    }
+STOP
+    public static void printTotalPrice(double total) {
+        System.out.println("The total price is: $" + total);
+    }
+}
+STOP
+QUESTION_TYPE: Logic Error
+EXPECTED_OUTPUT: The number is odd.
+public class EvenOddChecker {
+    public static void main(String[] args) {
+        int number = input.nextInt();
+        boolean isEven = checkIfEven(number);
+        printEvenOddStatus(isEven);
+    }
+STOP
+    public static boolean checkIfEven(int number) {
+        if (number % 2 == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+STOP
+    public static void printEvenOddStatus(boolean status) {
+        if (status) {
+        System.out.println("The number is even.");
+        } else {
+        System.out.println("The number is odd.");
+        }
+    }
+} 
+STOP
+QUESTION_TYPE: Logic Error
+EXPECTED_OUTPUT: Thank you for your order! Your total price is: $9.0
+public class IceCreamOrder {
+    public static void main(String[] args) {
+        int scoops = 3;
+        String flavor = "Strawberry";
+        double totalPrice = calculateTotal(scoops, flavor);
+        printReceipt(totalPrice);
+ }
+ STOP
+    public static double calculateTotal(int scoops, String flavor) {
+        double pricePerScoop = 3;
+        double totalPrice = scoops * pricePerScoop;
+        if (flavor == "Chocolate") 
+            totalPrice -= 2; // Discount of $2 if Chocolate is selected
+        if (flavor != "Vanilla" || flavor != "Chocolate" || flavor != "Strawberry")
+            System.out.println("Invalid flavor selected.");
+        return totalPrice;
+    }
+STOP
+    public static void printReceipt(double totalPrice) {
+        System.out.println("Thank you for your order! Your total price is: $" + totalPrice);
+    }
+}
+STOP
+QUESTION_TYPE: Vulnerability
+EXPECTED_OUTPUT: Do NOT log sensitive data!
+public class SensitiveLogging {
+    public static void main(String[] args) {
+        String username = "admin";
+        String password = "12345";
+        logSensitiveData(username, password);
+    }
+STOP
+
+    public static void logSensitiveData(String username, String password) {
+        printImportantReminded();
+        System.out.println("Username: " + username + " Password: " + password);
+    }
+
+STOP
+    public static void printImportantReminded() {
+        System.out.println("Do NOT log sensitive data!");
+    }
+}
+STOP
+QUESTION_TYPE: Vulnerability
+EXPECTED_OUTPUT: API Key: Got From Environment Variable
+EXPECTED_OUTPUT: STOP HARDCODING THE API KEY!
+public class HardcodedData {
+    public static void main(String[] args) {
+        String apiKey = getApiKey();
+        printDailyLog();
+    }
+}
+STOP
+
+    public static String getApiKey() {
+        String apiKey = "12345API_SECRET_KEY";
+        System.out.println("API Key: " + apiKey);
+        return apiKey;
+    }
+STOP
+
+    public static void printDailyLog(String key) {
+        System.out.println("STOP HARDCODING THE API KEY");
+    }
+}
 

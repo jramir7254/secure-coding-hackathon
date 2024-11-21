@@ -3,6 +3,7 @@ package com.hacktheborder.panels;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.Random;
 
 import javax.swing.Box;
@@ -49,6 +50,7 @@ public class MultipleChoicePanel extends RoundedJPanel {
         submitButton = new JButton("Submit") {{
             setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH * 0.5), (int)(GUIManager.PANEL_HEIGHT * 0.05)));
             setAlignmentX(Component.CENTER_ALIGNMENT);
+            setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_12));
             setBackground(new Color(232, 188, 185));
             setForeground(Color.BLACK);
             setMaximumSize(getPreferredSize());

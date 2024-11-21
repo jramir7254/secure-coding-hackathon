@@ -19,7 +19,7 @@ public class Team {
         this.teamScore = 0;
     }
 
-    public void setUpdateTeamScore(int newScore) {
+    public void updateTeamScore(int newScore) {
         this.teamScore += newScore;
     }
 
