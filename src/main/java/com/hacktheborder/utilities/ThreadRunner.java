@@ -12,8 +12,6 @@ public class ThreadRunner extends Thread {
 
     public ThreadRunner(String file) {
         try {
-            //appleFile = new File("src/main/java/com/hacktheborder/");
-            //windowsFile = new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\");
             ProcessBuilder processBuilder2 = new ProcessBuilder("javac", file);
             processBuilder2.redirectErrorStream(true);
             processBuilder2.directory(new File(file));
@@ -26,7 +24,7 @@ public class ThreadRunner extends Thread {
                 process2.getOutputStream().close();
 
 
-            //System.out.println(file.getAbsolutePath());
+      
             processBuilder = new ProcessBuilder("java", "-cp", file, "Test.java");
             processBuilder.redirectErrorStream(true);
             processBuilder.directory(new File(file));

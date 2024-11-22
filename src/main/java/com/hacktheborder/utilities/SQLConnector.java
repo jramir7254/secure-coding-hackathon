@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.hacktheborder.managers.ApplicationManager;
-
 
 public class SQLConnector {
     private Connection connection;
@@ -19,10 +17,11 @@ public class SQLConnector {
     private PreparedStatement statement;
 
     private String user, password;
-    private static String databaseURL = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
+    private static String databaseURL;// = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
 
 
     public static void setURL(String ipAddr) {
+
         databaseURL = "jdbc:mysql://"+ ipAddr + ":3306/secure_coding_database";
         System.out.println(databaseURL);
     }
@@ -76,14 +75,14 @@ public class SQLConnector {
 
     public List<String[]> getTopFive() {
         try {
-            String query = "SELECT * FROM TEAMS ORDER BY Current_Team_Score DESC LIMIT 5";
+            String query = "SELECT * FROM TEAMS ORDER BY Team_High_Score DESC LIMIT 5";
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
 
             List<String[]> topTeams = new ArrayList<>();
             while (resultSet.next()) {
                 String teamName = resultSet.getString("Team_Name");
-                int teamScore = resultSet.getInt("Current_Team_Score");
+                int teamScore = resultSet.getInt("Team_High_Score");
                 topTeams.add(new String[] {teamName, teamScore +""});
             }
             return topTeams;
@@ -127,6 +126,59 @@ public class SQLConnector {
         }
     }
 
+    public void resetTeamCurrentScore(String teamName) {
+        try {
+            System.out.println("updating");
+            System.out.println(teamName);
+            String query = "UPDATE Teams SET Current_Team_Score = ? WHERE Team_Name = ?;";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, 0);
+            statement.setString(2, teamName);
+
+            if (statement.executeUpdate() == 1) 
+                System.out.println("Finished Updating Score");
+            
+            //System.out.println("Finished inserting new team.");
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                resultSet.close();
+                statement.close();
+                connection.close();
+            } catch (Exception e) {
+                System.err.println("Error");
+            }
+        }
+    }
+
+    public void updateTeamHighScore(int score, String teamName) {
+        try {
+            System.out.println("updating");
+            System.out.println(teamName);
+            String query = "UPDATE Teams SET Team_High_Score = ? WHERE Team_Name = ?;";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, score);
+            statement.setString(2, teamName);
+
+            if (statement.executeUpdate() == 1) 
+                System.out.println("Finished Updating Score");
+            
+            //System.out.println("Finished inserting new team.");
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                resultSet.close();
+                statement.close();
+                connection.close();
+            } catch (Exception e) {
+                System.err.println("Error");
+            }
+        }
+    }
+
+
 
 
 
@@ -151,6 +203,9 @@ public class SQLConnector {
 
 
     
+
+
+
     
     public boolean teamExist(String teamName) {
 
@@ -229,9 +284,9 @@ public class SQLConnector {
                 String teamName = resultSet.getString("Team_Name");
                 int numMembers = resultSet.getInt("Num_Members");
                 int idNum = resultSet.getInt("ID_Number");
-                int teamScore = resultSet.getInt("Current_Team_Score");
-                System.out.printf("Team successfully retrieved\n\tteam name: %s\n\tnum members: %d\n\tid num: %d \n", teamName, numMembers, idNum, teamScore);
-                return new Team(teamName, numMembers, idNum, teamScore);
+                int teamHighScore = resultSet.getInt("Team_High_Score");
+                System.out.printf("Team successfully retrieved\n\tteam name: %s\n\tnum members: %d\n\tid num: %d \n", teamName, numMembers, idNum, teamHighScore);
+                return new Team(teamName, numMembers, idNum, teamHighScore);
             }
 
         } catch (SQLException e) {

@@ -45,7 +45,7 @@ public class HeaderPanel extends JPanel {
 
         totalTimerTextJLabel = new JLabel("Total Time: " + formatTime(totalTimeInSeconds));
         totalTimerTextJLabel.setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_18));
-        totalTimerTextJLabel.setText("Total Time 0:00:00");
+        totalTimerTextJLabel.setText("Total Time: 0:00:00");
 
 
         currentTeamNameJLabel = new JLabel();
@@ -152,7 +152,7 @@ public class HeaderPanel extends JPanel {
         String teamInfo = currentTeam.getTeamName();
         currentTeamNameJLabel.setText("Team: " + teamInfo);
         currentTeamScoreJLabel.setText("Team Current Score: " + currentTeam.getTeamScore());
-        currentTeamHighScoreJLabel.setText("Team High Score: " + currentTeam.getTeamScore());
+        currentTeamHighScoreJLabel.setText("Team High Score: " + currentTeam.getTeamHighScore());
 
         // jLabelContainerPanel.add(scoreP);
         // jLabelContainerPanel.add(teamP);
@@ -163,6 +163,13 @@ public class HeaderPanel extends JPanel {
     public void updateScore() {
         Team currentTeam = TeamManager.getCurrentTeam();
         currentTeamScoreJLabel.setText("Current Team Score: " + currentTeam.getTeamScore());
+    }
+
+    public void updateAllScores() {
+        updateScore();
+        Team currentTeam = TeamManager.getCurrentTeam();
+        currentTeamScoreJLabel.setText("Current Team Score: " + currentTeam.getTeamScore());
+        currentTeamHighScoreJLabel.setText("Team High Score: " + currentTeam.getTeamScore());
     }
 
 
@@ -180,10 +187,12 @@ public class HeaderPanel extends JPanel {
 
 
     public void resetAll() {
-        totalTimeInSeconds = 0;
-        questionTimerTextJLabel.setText("Total Time: " + formatTime(totalTimeInSeconds));
-        currentTeamNameJLabel.setText("");
-        currentTeamScoreJLabel.setText("");
+        resetAllTimers();
+        questionTimerTextJLabel.setText("Question Time: 0:00:00");
+        totalTimerTextJLabel.setText("Total Time: 0:00:00");
+        currentTeamNameJLabel.setText("Team: ");
+        currentTeamScoreJLabel.setText("Team Current Score: ");
+        currentTeamHighScoreJLabel.setText("Team High Score: ");
     }
 
 

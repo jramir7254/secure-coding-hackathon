@@ -16,7 +16,7 @@ public class QuestionHolder {
         questions = new Stack<>() {{
             addAll(getQuestions());
         }};
-        questions.setSize(3);
+        questions.setSize(1);
         System.out.println(questions.size());
     }
 

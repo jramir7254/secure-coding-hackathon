@@ -11,7 +11,7 @@ public class QuizScoreCalculator {
         double timePenalty = P1 * Math.sqrt(timeTaken);
         
         // Penalty for wrong selections raised to the power of 1.5
-        double wrongSelectionPenalty = P2 * Math.pow(wrongSelections, 1.5);
+        double wrongSelectionPenalty = P2 * Math.pow(wrongSelections, 1.25);
         
         // Final score calculation
         int score =(int)(BASE_SCORE - timePenalty - wrongSelectionPenalty);

@@ -11,11 +11,11 @@ public class Team {
         this(null, 0, -1, 0);
     }
 
-    public Team(String teamName, int numMembers, int epccIdNumber, int teamScore) {
+    public Team(String teamName, int numMembers, int epccIdNumber, int teamHighScore) {
         this.teamName = teamName;
         this.numMembers = numMembers;
         this.epccIdNumber = epccIdNumber;
-        this.personalBestTeamScore = teamScore;
+        this.personalBestTeamScore = teamHighScore;
         this.teamScore = 0;
     }
 
@@ -37,5 +37,9 @@ public class Team {
 
     public int getTeamScore() {
         return this.teamScore;
+    }
+
+    public int getTeamHighScore() {
+        return this.personalBestTeamScore;
     }
 }

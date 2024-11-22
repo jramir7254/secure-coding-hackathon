@@ -6,13 +6,7 @@ import java.awt.Dimension;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPopupMenu;
-import javax.swing.JToolTip;
-import javax.swing.JWindow;
-import javax.swing.border.LineBorder;
+
 
 import org.fife.ui.rtextarea.RTextArea;
 
@@ -53,7 +47,7 @@ public class QuestionContainerPanel extends RoundedJPanel {
 
 
     public QuestionContainerPanel() {
-        super(75, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR); 
+        super(125, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR); 
 
         setOpaque(false);
         setPreferredSize(new Dimension(GUIManager.PANEL_WIDTH, GUIManager.PANEL_HEIGHT));

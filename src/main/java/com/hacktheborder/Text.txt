@@ -75,12 +75,13 @@ STOP
 }
 STOP
 QUESTION_TYPE: Vulnerability
-EXPECTED_OUTPUT: 
+EXPECTED_OUTPUT: Stop printing passwords!
 import java.util.Random;
 public class Test {
     public static void main(String[] args) {
         String name = "Jay";
         String password = getPassword();
+        System.out.println("Stop printing passwords!");
     }
 
 STOP
@@ -153,34 +154,6 @@ STOP
 }
 STOP
 QUESTION_TYPE: Compile Time Error
-EXPECTED_OUTPUT: The total cost of your order is: $40.96
-public class Test {
-    public static void main(String[] args) {
-        double coffeePrice = 4.50, pastryPrice = 7.99;
-        int coffeeQuantity = 2, pastryQuantity = 4;
-
-        double totalCost = calculateTotalCost(coffeePrice, coffeeQuantity, pastryPrice, pastryQuantity);
-        printTotalCost(totalCost);
-    }
-STOP
-
-    public static double calculateTotalCost(double coffeePrice, int coffeeQuantity, double pastryPrice, pastryQuantity) { 
-        double coffeeCost = coffeePrice * coffeQuantity
-        double pastryCost = pastryprice * pastryQuantity; 
-        double total = coffeeCost + pastryCost;
-        return total;
-    }
-STOP
-
-    public static void printTotalCost(double totalCost) {
-        if (totalCost > 0) 
-            System.out.println("The total cost of your order is: $" + totalCost);
-        else 
-            System.out.println("Error: Unable to calculate the total cost.");
-    }
-} 
-STOP
-QUESTION_TYPE: Compile Time Error
 EXPECTED_OUTPUT: The total cost of your booking is: $1807.5
 EXPECTED_OUTPUT: Thank you for booking with us!
 public class Test {
@@ -210,13 +183,14 @@ EXPECTED_OUTPUT: race car
 EXPECTED_OUTPUT: 
 EXPECTED_OUTPUT: Reversal complete. Thank you for using the program!
 EXPECTED_OUTPUT: Goodbye!
+
 public class BackwardsWord {
     public static void main(String[] args) {
         System.out.println("Please provide a word:");
         String word = "race car".toLowerCase();
         int index = word.length() - 1;
 
-        for (; ; index >= 0; index--) {
+        for (;index >= 0; index--) {
 STOP
             char c = word.charAt(i);
             System.out.print(c)); 
@@ -242,7 +216,7 @@ public class UserAge {
 
 STOP
 
-    public static void calculateAge(int birthYear { 
+    public static int calculateAge(int birthYear { 
         int age = 2024 - birthYear 
         System.out.println("Your age is " + Age); 
         return yearsOld;
@@ -258,17 +232,17 @@ STOP
 
 STOP
 QUESTION_TYPE: Compile Time Error
-EXPECTED_OUTPUT: Your age is 37
-EXPECTED_OUTPUT: Expected age calculation result: 37
+EXPECTED_OUTPUT: Your age is 24
+EXPECTED_OUTPUT: Expected age calculation result: 24
 public class UserAge {
     public static void main(String[] args) {
-        int birthYear = 1987;
+        int birthYear = 2000;
         
         validateResults(calculateAge(birthYear));
     } 
 STOP
 
-    public static void calculateAge(int birthYear { 
+    public static int calculateAge(int birthYear { 
         int age = 2024 - birthYear 
         System.out.println("Your age is " + Age); 
         return yearsOld;
@@ -299,7 +273,7 @@ STOP
         else if (color.Equals("red"))
             return "Red is vibrant and bold!";
         else 
-            retorn 'That's a unique choice!';
+            retorn 'That is a unique choice!';
      }
 STOP
 
@@ -327,7 +301,7 @@ STOP
     }
 STOP
 
-    public static void calculateSalary(double hoursWorked, double hourlyWage) {
+    public static double calculateSalary(double hoursWorked, double hourlyWage) {
         double expectedSalary = hoursWorked * hourlyWage;
         return expectedSalary;
     }
@@ -531,10 +505,10 @@ STOP
 }
 STOP
 QUESTION_TYPE: Logic Error
-EXPECTED_OUTPUT: Number of vowels: 4
+EXPECTED_OUTPUT: Number of vowels: 6
 public class VowelCounter {
     public static void main(String[] args) {
-        String input = "Hello World!";
+        String input = "Hello Creature!";
         int vowelCount = countVowels(input);
         printNumVowels(vowelCount);
     }
@@ -589,7 +563,7 @@ EXPECTED_OUTPUT: Access granted.
 public class AuthenticationSystem {
     public static void main(String[] args) {
         String userName = "admin";
-        String password = "password123";
+        String password = "password124";
 
         printAuthenticationStatus(authenticate(userName, password));
     }
@@ -598,7 +572,7 @@ STOP
         String storedUsername = "admin";
         String storedPassword = "password123";
 
-        if (username == storedUsername && password == storedPassword)
+        if (username == storedUsername || password == storedPassword)
             return true;
         return false;
     }
@@ -662,7 +636,7 @@ QUESTION_TYPE: Logic Error
 EXPECTED_OUTPUT: The number is odd.
 public class EvenOddChecker {
     public static void main(String[] args) {
-        int number = input.nextInt();
+        int number = 77;
         boolean isEven = checkIfEven(number);
         printEvenOddStatus(isEven);
     }
@@ -692,7 +666,7 @@ public class IceCreamOrder {
         String flavor = "Strawberry";
         double totalPrice = calculateTotal(scoops, flavor);
         printReceipt(totalPrice);
- }
+    }
  STOP
     public static double calculateTotal(int scoops, String flavor) {
         double pricePerScoop = 3;
@@ -733,14 +707,14 @@ STOP
 QUESTION_TYPE: Vulnerability
 EXPECTED_OUTPUT: API Key: Got From Environment Variable
 EXPECTED_OUTPUT: STOP HARDCODING THE API KEY!
+
 public class HardcodedData {
     public static void main(String[] args) {
         String apiKey = getApiKey();
         printDailyLog();
     }
-}
-STOP
 
+STOP
     public static String getApiKey() {
         String apiKey = "12345API_SECRET_KEY";
         System.out.println("API Key: " + apiKey);

@@ -10,7 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPopupMenu;
+
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
@@ -33,7 +33,7 @@ public class MainMenuPanel extends RoundedJPanel {
 
 
     public MainMenuPanel() {
-        super(175, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR);
+        super(125, GUIManager.CENTER_COMPONENT_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR);
 
         
         
@@ -133,6 +133,15 @@ public class MainMenuPanel extends RoundedJPanel {
             setForeground(Color.RED);
             setFont(new Font("Calibri", Font.PLAIN, GUIManager.FONT_SIZE_12));
         }};
+    }
+
+    public void resetAll() {
+        removeAll();
+        add(coverImageLabel);
+        add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.1))));
+        add(teamNameTextField);
+        add(Box.createRigidArea(new Dimension(0, (int)(GUIManager.PANEL_HEIGHT * 0.05))));
+        add(submitFieldsButton);
     }
 
 

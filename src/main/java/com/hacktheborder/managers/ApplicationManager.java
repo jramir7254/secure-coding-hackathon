@@ -2,7 +2,6 @@ package com.hacktheborder.managers;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 
@@ -65,6 +64,7 @@ public class ApplicationManager {
 
 
     public static void resetAll() {
+        SQL_CONNECTOR.resetTeamCurrentScore(currentTeam.getTeamName());
         currentTeam = null;
         currentQuestion = null;
         QUESTION_HOLDER.regenerateQuestions();
@@ -96,7 +96,7 @@ public class ApplicationManager {
     public static class MainFrameManager {
         public static void displayMainMenu() {
             CENTER_COMP_CONTAINER_JPANEL.add(MAIN_MENU_PANEL);
-            CENTER_COMP_CONTAINER_JPANEL.setBackground(GUIManager.MAIN_FRAME_BACKGROUND_COLOR);
+            refresh();
         }
 
 
@@ -114,6 +114,7 @@ public class ApplicationManager {
             CENTER_COMP_CONTAINER_JPANEL.add(END_GAME_PANEL);
             HEADER_PANEL.stopAllTimers();
             HEADER_PANEL.resetAllTimers();
+            TeamManager.updateTeamHighScore();
             refresh();
         }
     }
@@ -130,6 +131,11 @@ public class ApplicationManager {
         public static void updateTeamDBScore() {
             startConnection();
             SQL_CONNECTOR.updateTeamCurrentScore(currentTeam.getTeamScore(), currentTeam.getTeamName().toUpperCase());
+        }
+
+        public static void updateTeamDBHighScore() {
+            startConnection();
+            SQL_CONNECTOR.updateTeamHighScore(currentTeam.getTeamScore(), currentTeam.getTeamName().toUpperCase());
         }
 
 
@@ -155,6 +161,16 @@ public class ApplicationManager {
             currentTeam = SQL_CONNECTOR.getTeam(teamName.toUpperCase());
         }
 
+        public static boolean newHighScore() {
+            return currentTeam.getTeamScore() > currentTeam.getTeamHighScore();
+        }
+
+        public static void updateTeamHighScore() {
+            if(newHighScore()) {
+                SQLManager.updateTeamDBHighScore();
+            }
+        }
+
 
         public static void updateTeamScore() {
             int timeInSeconds = HEADER_PANEL.getQuestionTimeSeconds();
@@ -163,7 +179,11 @@ public class ApplicationManager {
             int score = QuizScoreCalculator.calculateScore(timeInSeconds, numWrongAttempts);
             currentTeam.updateTeamScore(score);
             HEADER_PANEL.updateScore();
-            SQLManager.updateTeamDBScore();
+            if(TeamManager.newHighScore()) {
+                HEADER_PANEL.updateAllScores();
+                SQLManager.updateTeamDBHighScore();
+            }
+               
         }
 
 
@@ -178,7 +198,6 @@ public class ApplicationManager {
             if(!QUESTION_HOLDER.isEmpty()) {
                 HEADER_PANEL.startQuestionTimer();
                 HEADER_PANEL.resetQuestionTimer();
-                //HEADER_PANEL.startQuestionTimer();
                 currentQuestion = QUESTION_HOLDER.getNextQuestion();
                 QUESTION_CONTAINER_PANEL.nextQuestion();
             } else {

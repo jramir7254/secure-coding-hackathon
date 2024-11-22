@@ -12,12 +12,12 @@ public class QuestionGenerator {
         M();
     }
     public static void M() {
-        appleFile = new File("src/main/java/com/hacktheborder/");
+        appleFile = new File("src/main/java/com/hacktheborder/Text.txt");
             windowsFile = new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\");
 
         ArrayList <Question> questions = new ArrayList<>();
         try {
-            Scanner scan = new Scanner(new File("secure-coding\\src\\main\\java\\com\\hacktheborder\\Text.txt"));
+            Scanner scan = new Scanner(appleFile);
             StringBuilder sb = new StringBuilder();
             String[] strs = new String[3];
             String questionType = "";
@@ -52,7 +52,7 @@ public class QuestionGenerator {
             }
             scan.close();
 
-            try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("secure-coding\\src\\main\\resources\\Question.ser")))) {
+            try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("src/main/resources/Question.ser")))) {
                 for(Question q : questions) {
                     oos.writeObject(q);
                 }

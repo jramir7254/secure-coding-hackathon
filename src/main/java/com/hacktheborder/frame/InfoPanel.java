@@ -5,11 +5,8 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
+
+
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -130,7 +127,7 @@ public class InfoPanel extends JPanel {
                 panel.repaint();
             }
         });
-        infoLabel.setText("Click for more info");
+        infoLabel.setText("Instructions");
  
         panel.add(infoLabel);
         panel.add(jsp);
