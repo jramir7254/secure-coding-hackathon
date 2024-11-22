@@ -363,7 +363,6 @@ public class EvenNumberChecker {
     public static void main(String[] args) {
 
         final int number = 7 * 5 + ((8-4) * 3);
-
 STOP
         int result = number % 0;
 
@@ -379,9 +378,6 @@ STOP
 
     }
 } 
-
-
-
 STOP
 QUESTION_TYPE: Runtime Error
 EXPECTED_OUTPUT: Total sum: 75
@@ -651,9 +647,9 @@ STOP
 STOP
     public static void printEvenOddStatus(boolean status) {
         if (status) {
-        System.out.println("The number is even.");
+            System.out.println("The number is even.");
         } else {
-        System.out.println("The number is odd.");
+            System.out.println("The number is odd.");
         }
     }
 } 
@@ -667,7 +663,7 @@ public class IceCreamOrder {
         double totalPrice = calculateTotal(scoops, flavor);
         printReceipt(totalPrice);
     }
- STOP
+STOP
     public static double calculateTotal(int scoops, String flavor) {
         double pricePerScoop = 3;
         double totalPrice = scoops * pricePerScoop;
@@ -711,10 +707,10 @@ EXPECTED_OUTPUT: STOP HARDCODING THE API KEY!
 public class HardcodedData {
     public static void main(String[] args) {
         String apiKey = getApiKey();
-        printDailyLog();
+        printDailyLog(apiKey);
     }
-
 STOP
+
     public static String getApiKey() {
         String apiKey = "12345API_SECRET_KEY";
         System.out.println("API Key: " + apiKey);
@@ -723,7 +719,7 @@ STOP
 STOP
 
     public static void printDailyLog(String key) {
-        System.out.println("STOP HARDCODING THE API KEY");
+        System.out.println("STOP HARDCODING THE API KEY!");
     }
 }
-
+STOP

@@ -82,7 +82,7 @@ public class InfoPanel extends JPanel {
 
         RoundedJTextArea txcArea = new RoundedJTextArea(25, GUIManager.COMPONENT_CHILD_BACKGROUND_COLOR, GUIManager.MAIN_FRAME_BACKGROUND_COLOR) {{
             setText(FileManager.readFile());
-            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.25), 1800));
+            setPreferredSize(new Dimension((int)(GUIManager.PANEL_WIDTH / 2.15), 1800));
             setMaximumSize(getPreferredSize());
             setMinimumSize(getPreferredSize());
             setFont(new Font("Calibri", Font.BOLD, GUIManager.FONT_SIZE_12));

@@ -17,7 +17,7 @@ public class SQLConnector {
     private PreparedStatement statement;
 
     private String user, password;
-    private static String databaseURL;// = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
+    private static String databaseURL = "jdbc:mysql://192.168.1.213:3306/secure_coding_database";
 
 
     public static void setURL(String ipAddr) {

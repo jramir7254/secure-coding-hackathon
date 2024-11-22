@@ -25,7 +25,7 @@ public class Main {
 
         UIManager.put("Button.arc", 35);
 
-        setupSQLConnection();
+       // setupSQLConnection();
        
         SwingUtilities.invokeLater(ApplicationManager::start);
     }
